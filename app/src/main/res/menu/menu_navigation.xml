@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/Main"
+            android:title="Главная"
+            />
+        <item
+            android:id="@+id/AboutSchool"
+            android:title="О школе" />
+        <item
+            android:id="@+id/Schedule"
+            android:title="Расписание уроков" />
+        <item
+            android:id="@+id/Call"
+            android:title="Расписание звонков" />
+        <item
+            android:id="@+id/News"
+            android:title="Новости" />
+    </group>
+</menu>
