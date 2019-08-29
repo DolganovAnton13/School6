@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 navController.navigate(R.id.AboutSchool);
                 toolbar.setTitle("О школе");
                 break;
-                
+
         }
         return true;
     }
