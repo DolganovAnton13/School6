@@ -1,4 +1,4 @@
-package com.yugorsk.school6;
+package com.yugorsk.school6.di.module;
 
 import android.content.Context;
 

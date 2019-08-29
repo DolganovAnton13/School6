@@ -1,4 +1,6 @@
-package com.yugorsk.school6;
+package com.yugorsk.school6.di.module;
+
+import com.yugorsk.school6.di.module.ContextModule;
 
 import dagger.Module;
 
