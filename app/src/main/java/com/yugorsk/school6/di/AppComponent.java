@@ -17,5 +17,5 @@ import dagger.Component;
 public interface AppComponent {
 
         //DataRepository getDataRepository();
-       // DatabaseRepository getDatabaseRepository();
+        DatabaseRepository getDatabaseRepository();
 }
