@@ -6,6 +6,8 @@ import com.yugorsk.school6.di.AppComponent;
 import com.yugorsk.school6.di.DaggerAppComponent;
 import com.yugorsk.school6.di.module.ContextModule;
 
+import io.reactivex.plugins.RxJavaPlugins;
+
 public class App extends Application {
 
     private static AppComponent component;
@@ -14,8 +16,15 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
 
+        //RxJavaPlugins.setErrorHandler(throwable ->{});
+
         component = DaggerAppComponent.builder()
                 .contextModule(new ContextModule(getApplicationContext()))
                 .build();
+    }
+
+    public static AppComponent getComponent()
+    {
+        return component;
     }
 }
