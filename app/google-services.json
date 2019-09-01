@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "355378333130",
+    "firebase_url": "https://newschool6-dd806.firebaseio.com",
+    "project_id": "newschool6-dd806",
+    "storage_bucket": "newschool6-dd806.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:355378333130:android:e5730748b82d60a3",
+        "android_client_info": {
+          "package_name": "com.yugorsk.school6"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "355378333130-gfbg3kcas1gnb0j1urmreojirn1b14gu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.yugorsk.school6",
+            "certificate_hash": "62e4a006972c5371d9c604410fdf1bcf3ecd2649"
+          }
+        },
+        {
+          "client_id": "355378333130-h280ii3id4qnqr4mv6debg0egmne8nfe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4qvKdk2mlAPadrpxZgznfdSL3urv1L_A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "355378333130-h280ii3id4qnqr4mv6debg0egmne8nfe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

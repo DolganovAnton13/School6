@@ -6,6 +6,7 @@ import com.yugorsk.school6.db.dao.NewsDao;
 import com.yugorsk.school6.db.dao.ScheduleDao;
 import com.yugorsk.school6.di.module.DatabaseModule;
 import com.yugorsk.school6.di.module.NetworkModule;
+import com.yugorsk.school6.repository.DataRepository;
 import com.yugorsk.school6.repository.DatabaseRepository;
 
 import javax.inject.Singleton;
@@ -21,5 +22,12 @@ public class RepositoryModule {
     DatabaseRepository databaseRepository(DateDao dateDao, LoginDao loginDao, NewsDao newsDao, ScheduleDao scheduleDao)
     {
         return new DatabaseRepository(dateDao,loginDao,newsDao,scheduleDao);
+    }
+
+    @Singleton
+    @Provides
+    DataRepository dataRepository()
+    {
+        return new DataRepository();
     }
 }
