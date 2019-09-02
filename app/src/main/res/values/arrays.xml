@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="list_spinner_menu">
+        <item>О школе</item>
+        <item>Архитектура</item>
+        <item>Столовая</item>
+        <item>Документы</item>
+        <item>Директора</item>
+        <item>Дошкольное образование</item>
+        <item>Программа развития</item>
+        <item>Педагогический коллектив</item>
+        <item>Ученики</item>
+        <item>Награды и заслуги</item>
+    </string-array>
+
+</resources>
