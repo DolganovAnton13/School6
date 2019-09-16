@@ -16,11 +16,16 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            debuggable true
         }
     }
 
     dataBinding {
         enabled = true
+    }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
     }
 }
 
@@ -31,6 +36,9 @@ dependencies {
 
     //ViewModel and LiveData
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
+   // implementation "android.arch.lifecycle:extensions:1.0.0"
+   // annotationProcessor "android.arch.lifecycle:compiler:1.0.0"
+   // implementation 'android.arch.lifecycle:viewmodel:1.1.0'
 
     //Navigation
     implementation 'androidx.navigation:navigation-fragment:2.1.0-alpha05'
@@ -38,8 +46,12 @@ dependencies {
 
     // Dagger 2
     implementation 'com.google.dagger:dagger:2.7'
-    implementation 'com.google.firebase:firebase-database:16.0.4'
     annotationProcessor 'com.google.dagger:dagger-compiler:2.7'
+
+    // Firebase
+    implementation 'com.google.firebase:firebase-database:16.0.4'
+    implementation 'com.google.firebase:firebase-storage:16.0.4'
+    implementation 'com.google.firebase:firebase-auth:16.0.5'
 
     // Room
     implementation 'androidx.room:room-runtime:2.1.0'
@@ -51,6 +63,9 @@ dependencies {
 
     // PhotoView
     implementation 'com.github.chrisbanes:PhotoView:1.2.6'
+
+    // Rx2Firebase
+    implementation 'com.github.FrangSierra:RxFirebase:1.5.6'
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.12'

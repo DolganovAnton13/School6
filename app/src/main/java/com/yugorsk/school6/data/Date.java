@@ -7,9 +7,8 @@ import androidx.room.PrimaryKey;
 @Entity
 public class Date {
 
-    @NonNull
-    @PrimaryKey
-    private String id;
+    @PrimaryKey(autoGenerate = true)
+    private long id;
 
     private String quarterOneFrom;      //первая четверть с
     private String quarterOneTo;        //первая четверть до
@@ -31,12 +30,11 @@ public class Date {
         this.quarterFourTo = quarterFourTo;
     }
 
-    @NonNull
-    public String getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(@NonNull String id) {
+    public void setId(long id) {
         this.id = id;
     }
 

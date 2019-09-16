@@ -36,7 +36,6 @@
             android:layout_marginBottom="8dp"
             android:fontFamily="sans-serif"
             android:gravity="center"
-            android:text="Школа №6\nЮгорск"
             android:textColor="@color/title"
             android:textSize="16sp"
             app:layout_constraintHorizontal_bias="0.77"

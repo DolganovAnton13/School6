@@ -40,8 +40,8 @@ public class DatabaseRepository {
 
     public void saveDateList(final List<Date> dates)
     {
-        /*Completable.fromAction(() -> dateDao.insert(dates))
+        Completable.fromAction(() -> dateDao.insert(dates))
                 .subscribeOn(Schedulers.io())
-                .subscribe();*/
+                .subscribe();
     }
 }
