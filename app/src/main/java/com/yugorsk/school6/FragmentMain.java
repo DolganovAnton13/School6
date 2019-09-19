@@ -31,55 +31,51 @@ public class FragmentMain extends Fragment {
 
     private MainActivity activity;
     private MainViewModel model;
-    //private FragmentMainBinding binding;
+    private FragmentMainBinding binding;
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        this.activity = (MainActivity) context;
-    }
-
-    public FragmentMain() {
-        // Required empty public constructor
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main, container, false);
+        binding = DataBindingUtil.inflate(inflater ,R.layout.fragment_main,container , false);
+        View view = binding.getRoot();
+
+        return view;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-       // binding = DataBindingUtil.setContentView(activity, R.layout.fragment_main);
-        model = ViewModelProviders.of(activity).get(MainViewModel.class);
-       // updateDateList();
-        //loadDateList();
+
+        model = ViewModelProviders.of(this).get(MainViewModel.class);
+
+        //если есть интернет, то
+        //updateDateList();
+        //иначе
+        loadDateList();
     }
 
-    /*private void updateDateList()
+    private void updateDateList()
     {
-        List<String> listDate = model.getDateFromServer();
-       // LiveData<List<Date>> dateFromServer = model.getDateFromServer();
+        model.getDateFromServer().observe(this,dates ->{
 
-        dateFromServer.observe(this,dates -> {
-            model.updateDate(dates);
-            Log.i("eeeeeeeee", "update");
+            CalendarDate calendarDate = new CalendarDate(dates);
+            model.updateDate(calendarDate.toDate());
         });
-        List<Date> newDate = new ArrayList<>();
-       // newDate.add(new Date(listDate.get(0),listDate.get(1),"","","","","",""));
-        //model.updateDate(newDate);
-        Log.d("eeeeeeeee", "hello");
-        //binding.newTextForDate.setText(listDate.get(0).toString());
     }
+
 
     private void loadDateList()
     {
         LiveData<List<Date>> date = model.getDate();
         date.observe(this,dates -> {
-           // binding.newTextForDate.setText(dates.get(0).toString());
+
+            CalendarDate calendarDate = new CalendarDate(dates.get(0));
+            binding.newTextForDate.setText(calendarDate.CurrentDate());
+
         });
-    }*/
+    }
 }

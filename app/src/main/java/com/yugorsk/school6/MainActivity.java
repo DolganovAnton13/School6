@@ -7,6 +7,9 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.navigation.NavController;
@@ -15,35 +18,21 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuInflater;
+
 import android.view.MenuItem;
-import android.view.View;
 
 
 import com.google.android.material.navigation.NavigationView;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.yugorsk.school6.data.Date;
+
 import com.yugorsk.school6.databinding.ActivityMainBinding;
 
-import java.util.ArrayList;
-import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     NavController navController;
     ActivityMainBinding binding;
-    DrawerLayout drawerLayout;
     NavigationView navigationView;
-    Toolbar toolbar;
-    private MainViewModel model;
-    DatabaseReference myRef;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,33 +40,55 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        binding.toolbar.setTitle("Главная");
+        setSupportActionBar(binding.toolbar);
 
-        model = ViewModelProviders.of(this).get(MainViewModel.class);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, binding.drawerLayout, binding.toolbar, R.string.main, R.string.close);
+        binding.drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
 
-        //если есть интернет, то
-         //updateDateList();
-         //иначе
-        loadDateList();
+        navigationView = findViewById(R.id.navigationView);
+
+        //navController = Navigation.findNavController(this, R.id.hostFragment);
+
+        //NavigationUI.setupWithNavController(navigationView, navController);
+
+        navigationView.setNavigationItemSelectedListener(this);
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(binding.hostFragment.getId(), new FragmentMain());
+        fragmentTransaction.commit();
     }
 
-    private void updateDateList()
-    {
-        model.getDateFromServer().observe(this,dates ->{
 
-            CalendarDate calendarDate = new CalendarDate(dates);
-            model.updateDate(calendarDate.toDate());
-        });
-    }
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+        Fragment selectedFragment = null;
+        menuItem.setChecked(true);
 
+        binding.drawerLayout.closeDrawers();
 
-    private void loadDateList()
-    {
-        LiveData<List<Date>> date = model.getDate();
-        date.observe(this,dates -> {
+        int id = menuItem.getItemId();
 
-            CalendarDate calendarDate = new CalendarDate(dates.get(0));
-            binding.newTextForDate.setText(calendarDate.CurrentDate());
+        switch (id) {
 
-        });
+            case R.id.Main:
+                //navController.navigate(R.id.Main);
+                binding.toolbar.setTitle("Главная");
+                selectedFragment = new FragmentMain();
+                break;
+
+            case R.id.AboutSchool:
+                //navController.navigate(R.id.AboutSchool);
+                binding.toolbar.setTitle("О школе");
+                selectedFragment = new FragmentAboutSchool();
+                break;
+
+        }
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        fragmentTransaction.replace(binding.hostFragment.getId(), selectedFragment);
+        fragmentTransaction.commit();
+        return true;
     }
 }

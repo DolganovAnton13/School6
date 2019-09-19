@@ -15,14 +15,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/list"
-    android:layout_marginTop="4dp"
+
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cardTop"
         android:layout_width="0dp"
         android:layout_height="200dp"
-        android:layout_marginTop="8dp"
+
         android:background="@drawable/blackboard2"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
