@@ -5,19 +5,36 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/Main"
+            android:icon="@drawable/ic_home_black_24dp"
             android:title="Главная"
             />
         <item
             android:id="@+id/AboutSchool"
+            android:icon="@drawable/ic_domain_black_24dp"
             android:title="О школе" />
         <item
             android:id="@+id/Schedule"
+            android:icon="@drawable/ic_assignment_black_24dp"
             android:title="Расписание уроков" />
         <item
             android:id="@+id/Call"
+            android:icon="@drawable/ic_schedule_black_24dp"
             android:title="Расписание звонков" />
         <item
             android:id="@+id/News"
+            android:icon="@drawable/newspaper"
             android:title="Новости" />
+        <item
+            android:id="@+id/Contacts"
+            android:icon="@drawable/ic_location_on_black_24dp"
+            android:title="Контакты" />
+        <item
+            android:id="@+id/Admin"
+            android:icon="@drawable/ic_person_black_24dp"
+            android:title="Администрирование" />
+        <item
+            android:id="@+id/AboutApp"
+            android:icon="@drawable/ic_perm_device_information_black_24dp"
+            android:title="О приложении" />
     </group>
 </menu>

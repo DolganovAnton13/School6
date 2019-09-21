@@ -3,10 +3,10 @@
     <color name="colorPrimary">#ff6d00</color>
     <color name="colorPrimaryDark">#c43c00</color>
     <color name="colorAccent">#448aff</color>
-    <color name="title">#ffffff</color>
+    <color name="white">#ffffff</color>
     <color name="background">#FFF3E0</color>
     <color name="colorPage">#ff9e40</color>
-    <color name="material_drawer_dark_icons">#000000</color>
+    <color name="black">#000000</color>
     <color name="divider">#FFECB3</color>
     <color name="list">#EEEEEE</color>
 </resources>

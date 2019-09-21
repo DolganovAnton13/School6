@@ -27,8 +27,7 @@ import com.google.android.material.navigation.NavigationView;
 import com.yugorsk.school6.databinding.ActivityMainBinding;
 
 
-
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     NavController navController;
     ActivityMainBinding binding;
@@ -45,11 +44,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, binding.drawerLayout, binding.toolbar, R.string.main, R.string.close);
-        binding.drawerLayout.addDrawerListener(toggle);
+
         toggle.syncState();
-
+        binding.drawerLayout.addDrawerListener(toggle);
         navigationView = findViewById(R.id.navigationView);
-
+        navigationView.getMenu().getItem(0).setChecked(true);
         //navController = Navigation.findNavController(this, R.id.hostFragment);
 
         //NavigationUI.setupWithNavController(navigationView, navController);
@@ -74,14 +73,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             case R.id.Main:
                 //navController.navigate(R.id.Main);
+                navigationView.getMenu().getItem(0).setChecked(true);
                 binding.toolbar.setTitle("Главная");
                 selectedFragment = new FragmentMain();
                 break;
 
             case R.id.AboutSchool:
                 //navController.navigate(R.id.AboutSchool);
+                navigationView.getMenu().getItem(1).setChecked(true);
                 binding.toolbar.setTitle("О школе");
                 selectedFragment = new FragmentAboutSchool();
+                break;
+
+            default:
+                navigationView.getMenu().getItem(0).setChecked(true);
+                binding.toolbar.setTitle("Главная");
+                selectedFragment = new FragmentMain();
                 break;
 
         }
