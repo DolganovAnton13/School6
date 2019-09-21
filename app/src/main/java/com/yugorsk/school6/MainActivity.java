@@ -20,6 +20,8 @@ import androidx.navigation.ui.NavigationUI;
 import android.os.Bundle;
 
 import android.view.MenuItem;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 
 import com.google.android.material.navigation.NavigationView;
@@ -98,4 +100,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fragmentTransaction.commit();
         return true;
     }
+
 }

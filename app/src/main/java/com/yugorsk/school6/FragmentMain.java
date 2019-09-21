@@ -16,6 +16,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import com.yugorsk.school6.data.Date;
 import com.yugorsk.school6.databinding.FragmentMainBinding;
@@ -32,7 +34,7 @@ public class FragmentMain extends Fragment {
     private MainActivity activity;
     private MainViewModel model;
     private FragmentMainBinding binding;
-
+    Animation uptodown, downtoup, lefttoright, righttoleft;
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -52,6 +54,7 @@ public class FragmentMain extends Fragment {
 
         model = ViewModelProviders.of(this).get(MainViewModel.class);
 
+        loadAnimation();
         //если есть интернет, то
         //updateDateList();
         //иначе
@@ -77,5 +80,18 @@ public class FragmentMain extends Fragment {
             binding.newTextForDate.setText(calendarDate.CurrentDate());
 
         });
+    }
+
+    private void loadAnimation()
+    {
+        uptodown = AnimationUtils.loadAnimation(getContext(), R.anim.uptodown);
+        downtoup = AnimationUtils.loadAnimation(getContext(), R.anim.downtoup);
+        lefttoright = AnimationUtils.loadAnimation(getContext(), R.anim.lefttoright);
+        righttoleft = AnimationUtils.loadAnimation(getContext(), R.anim.righttoleft);
+
+        binding.cardTop.setAnimation(uptodown);
+        binding.cardLeft1.setAnimation(righttoleft);
+        binding.cardLeft2.setAnimation(lefttoright);
+        binding.cardRight.setAnimation(downtoup);
     }
 }
