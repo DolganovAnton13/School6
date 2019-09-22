@@ -1,5 +1,9 @@
 package com.yugorsk.school6.repository;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+
 import androidx.annotation.NonNull;
 import androidx.arch.core.util.Function;
 import androidx.lifecycle.LiveData;
@@ -40,4 +44,6 @@ public class DataRepository {
             return listDate;
         }
     }
+
+
 }

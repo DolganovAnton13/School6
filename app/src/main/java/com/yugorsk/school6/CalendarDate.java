@@ -1,17 +1,17 @@
 package com.yugorsk.school6;
 
-import android.widget.Toast;
-
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
+
+import com.yugorsk.school6.data.Date;
+
 import java.util.GregorianCalendar;
 import java.util.List;
 
 public class CalendarDate {
 
-    com.yugorsk.school6.data.Date date;
+    Date date;
     List<String> listDate;
     ArrayList<Integer> listDays;
     private String firstQuarterTo = "До конца 1-ой четверти -\n";
@@ -22,21 +22,20 @@ public class CalendarDate {
     private String school = "Школа №6\n Югорск\n";
 
 
-    public CalendarDate(com.yugorsk.school6.data.Date date) {
-       // this.listDate = listDate;
+    public CalendarDate(Date date) {
         listDays = new ArrayList<>();
         this.date = date;
     }
 
     public CalendarDate(List<String> date) {
-         this.listDate = date;
+        this.listDate = date;
     }
 
 
     public String CurrentDate() {
         try {
             Calendar calendar = new GregorianCalendar();
-            Date myDay = calendar.getTime();
+            java.util.Date myDay = calendar.getTime();
 
             listDays.clear();
 
@@ -48,7 +47,6 @@ public class CalendarDate {
             listDays.add(DifferenceDate(myDay, date.getQuarterThreeTo()));
             listDays.add(DifferenceDate(myDay, date.getQuarterFourFrom()));
             listDays.add(DifferenceDate(myDay, date.getQuarterFourTo()));
-
 
             if (listDays.size() == 0) {
                 return school;
@@ -85,14 +83,14 @@ public class CalendarDate {
                 return (fourthQuarterTo + listDays.get(6) + PrintDay(listDays.get(6)));
             }
         } catch (Exception ex) {
-            return "ошибка";
+            return school;
         }
         return school;
     }
 
-    private int DifferenceDate(Date dateOne, String date2) {
+    private int DifferenceDate(java.util.Date dateOne, String date2) {
         SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
-        Date dateTwo = null;
+        java.util.Date dateTwo = null;
 
         try {
             dateTwo = format.parse(date2);
@@ -116,17 +114,8 @@ public class CalendarDate {
         return " дней";
     }
 
-    /*public List<com.yugorsk.school6.data.Date> toDate()
-    {
-        List<com.yugorsk.school6.data.Date> dates = new ArrayList<>();
-        dates.add(new com.yugorsk.school6.data.Date(listDate.get(0),listDate.get(1),listDate.get(2),listDate.get(3),listDate.get(4),listDate.get(5),listDate.get(6),listDate.get(7)));
-        return dates;
 
-    }*/
-
-    public com.yugorsk.school6.data.Date toDate()
-    {
-        return new com.yugorsk.school6.data.Date(listDate.get(0),listDate.get(1),listDate.get(2),listDate.get(3),listDate.get(4),listDate.get(5),listDate.get(6),listDate.get(7));
-
+    public Date toDate() {
+        return new Date(listDate.get(0), listDate.get(1), listDate.get(2), listDate.get(3), listDate.get(4), listDate.get(5), listDate.get(6), listDate.get(7));
     }
 }

@@ -2,6 +2,8 @@ package com.yugorsk.school6.view.fragment;
 
 
 import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -19,6 +21,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 import com.yugorsk.school6.CalendarDate;
+import com.yugorsk.school6.network.NetworkState;
 import com.yugorsk.school6.viewmodel.MainViewModel;
 import com.yugorsk.school6.R;
 import com.yugorsk.school6.data.Date;
@@ -54,7 +57,11 @@ public class FragmentMain extends Fragment {
         model = ViewModelProviders.of(this).get(MainViewModel.class);
 
         loadAnimation();
-        getDateFromServer();
+
+        NetworkState networkState = new NetworkState(getActivity());
+        if(networkState.isOnline()) {
+            getDateFromServer();
+        }
         showDate();
     }
 
@@ -74,6 +81,10 @@ public class FragmentMain extends Fragment {
 
                 CalendarDate calendarDate = new CalendarDate(dates);
                 binding.newTextForDate.setText(calendarDate.CurrentDate());
+            }
+            else
+            {
+                binding.newTextForDate.setText(R.string.app_name);
             }
         });
     }
