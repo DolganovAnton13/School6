@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <androidx.viewpager.widget.ViewPager
+                    android:id="@+id/viewPagerAboutSchool5"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    />
+                <LinearLayout
+                    android:id="@+id/SliderDots3"
+                    android:layout_below="@+id/viewPagerAboutSchool5"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical|center_horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"/>
+                <TextView
+                    android:layout_below="@+id/SliderDots3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/textaboutschool10"
+                    android:textColor="@color/black"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"/>
+            </RelativeLayout>
+        </ScrollView>
+
+    </LinearLayout>
+
+</FrameLayout>

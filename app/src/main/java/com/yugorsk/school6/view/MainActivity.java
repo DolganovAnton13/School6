@@ -15,6 +15,7 @@ import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import android.view.MenuItem;
+import android.view.View;
 
 
 import com.google.android.material.navigation.NavigationView;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
         binding.toolbar.setTitle("Главная");
         setSupportActionBar(binding.toolbar);
+        //binding.spinnerAboutSchool.setVisibility(View.GONE);
 
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, binding.drawerLayout, binding.toolbar, R.string.main, R.string.close);
@@ -74,12 +76,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 navigationView.getMenu().getItem(0).setChecked(true);
                 binding.toolbar.setTitle("Главная");
                 selectedFragment = new FragmentMain();
+                //binding.spinnerAboutSchool.setVisibility(View.GONE);
                 break;
 
             case R.id.AboutSchool:
                 //navController.navigate(R.id.AboutSchool);
                 navigationView.getMenu().getItem(1).setChecked(true);
                 binding.toolbar.setTitle("О школе");
+                //binding.spinnerAboutSchool.setVisibility(View.VISIBLE);
                 selectedFragment = new FragmentAboutSchool();
                 break;
 
