@@ -1,4 +1,4 @@
-package com.yugorsk.school6;
+package com.yugorsk.school6.network;
 
 import android.os.Handler;
 import android.util.Log;

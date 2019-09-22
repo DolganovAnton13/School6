@@ -116,11 +116,17 @@ public class CalendarDate {
         return " дней";
     }
 
-    public List<com.yugorsk.school6.data.Date> toDate()
+    /*public List<com.yugorsk.school6.data.Date> toDate()
     {
         List<com.yugorsk.school6.data.Date> dates = new ArrayList<>();
         dates.add(new com.yugorsk.school6.data.Date(listDate.get(0),listDate.get(1),listDate.get(2),listDate.get(3),listDate.get(4),listDate.get(5),listDate.get(6),listDate.get(7)));
         return dates;
+
+    }*/
+
+    public com.yugorsk.school6.data.Date toDate()
+    {
+        return new com.yugorsk.school6.data.Date(listDate.get(0),listDate.get(1),listDate.get(2),listDate.get(3),listDate.get(4),listDate.get(5),listDate.get(6),listDate.get(7));
 
     }
 }

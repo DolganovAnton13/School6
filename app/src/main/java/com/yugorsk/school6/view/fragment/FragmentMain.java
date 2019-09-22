@@ -1,4 +1,4 @@
-package com.yugorsk.school6;
+package com.yugorsk.school6.view.fragment;
 
 
 import android.content.Context;
@@ -9,7 +9,6 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.util.Log;
@@ -19,11 +18,12 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
+import com.yugorsk.school6.CalendarDate;
+import com.yugorsk.school6.viewmodel.MainViewModel;
+import com.yugorsk.school6.R;
 import com.yugorsk.school6.data.Date;
 import com.yugorsk.school6.databinding.FragmentMainBinding;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.yugorsk.school6.view.MainActivity;
 
 
 /**
@@ -35,6 +35,7 @@ public class FragmentMain extends Fragment {
     private MainViewModel model;
     private FragmentMainBinding binding;
     Animation uptodown, downtoup, lefttoright, righttoleft;
+
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
@@ -43,10 +44,8 @@ public class FragmentMain extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater ,R.layout.fragment_main,container , false);
-        View view = binding.getRoot();
-
-        return view;
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false);
+        return binding.getRoot();
     }
 
     @Override
@@ -55,35 +54,31 @@ public class FragmentMain extends Fragment {
         model = ViewModelProviders.of(this).get(MainViewModel.class);
 
         loadAnimation();
-        //если есть интернет, то
-        //updateDateList();
-        //иначе
-        loadDateList();
+        getDateFromServer();
+        showDate();
     }
 
-    private void updateDateList()
-    {
-        model.getDateFromServer().observe(this,dates ->{
+    private void getDateFromServer() {
+        model.getDateFromServer().observe(this, dates -> {
 
             CalendarDate calendarDate = new CalendarDate(dates);
-            model.updateDate(calendarDate.toDate());
+            model.insertDate(calendarDate.toDate());
         });
     }
 
 
-    private void loadDateList()
-    {
-        LiveData<List<Date>> date = model.getDate();
-        date.observe(this,dates -> {
+    private void showDate() {
+        LiveData<Date> date = model.getDate();
+        date.observe(this, dates -> {
+            if (dates != null) {
 
-            CalendarDate calendarDate = new CalendarDate(dates.get(0));
-            binding.newTextForDate.setText(calendarDate.CurrentDate());
-
+                CalendarDate calendarDate = new CalendarDate(dates);
+                binding.newTextForDate.setText(calendarDate.CurrentDate());
+            }
         });
     }
 
-    private void loadAnimation()
-    {
+    private void loadAnimation() {
         uptodown = AnimationUtils.loadAnimation(getContext(), R.anim.uptodown);
         downtoup = AnimationUtils.loadAnimation(getContext(), R.anim.downtoup);
         lefttoright = AnimationUtils.loadAnimation(getContext(), R.anim.lefttoright);

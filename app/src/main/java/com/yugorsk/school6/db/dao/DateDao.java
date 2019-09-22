@@ -16,13 +16,7 @@ import java.util.List;
 public interface DateDao {
 
     @Query("SELECT * FROM Date")
-    LiveData<List<Date>> getAllDate();
-
-    @Query("SELECT * FROM Date WHERE id = :id")
-    LiveData<Date> getDateById(String id);
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(List<Date> dates);
+    LiveData<Date> getAllDate();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Date date);
@@ -32,4 +26,7 @@ public interface DateDao {
 
     @Delete
     void delete(Date date);
+
+    @Query("DELETE FROM Date")
+    void deleteAll();
 }

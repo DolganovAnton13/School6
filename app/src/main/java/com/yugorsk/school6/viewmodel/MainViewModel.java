@@ -1,4 +1,4 @@
-package com.yugorsk.school6;
+package com.yugorsk.school6.viewmodel;
 
 import android.util.Log;
 
@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.room.Database;
 
 
+import com.yugorsk.school6.App;
 import com.yugorsk.school6.data.Date;
 import com.yugorsk.school6.data.Login;
 import com.yugorsk.school6.data.News;
@@ -24,12 +25,11 @@ public class MainViewModel extends ViewModel {
     private DatabaseRepository database;
 
     public MainViewModel(){
-        database=App.getComponent().getDatabaseRepository();
+        database= App.getComponent().getDatabaseRepository();
         data=App.getComponent().getDataRepository();
-
     }
 
-    public LiveData<List<Date>> getDate()
+    public LiveData<Date> getDate()
     {
         return database.getDate();
     }
@@ -49,9 +49,9 @@ public class MainViewModel extends ViewModel {
         return database.getSchedule();
     }
 
-    public void updateDate(List<Date> dates)
+    public void insertDate(Date dates)
     {
-        database.saveDateList(dates);
+        database.insertDate(dates);
     }
 
     public LiveData<List<String>> getDateFromServer(){

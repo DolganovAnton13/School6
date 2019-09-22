@@ -14,6 +14,7 @@ import com.yugorsk.school6.db.dao.ScheduleDao;
 import java.util.List;
 
 import io.reactivex.Completable;
+import io.reactivex.functions.Action;
 import io.reactivex.schedulers.Schedulers;
 
 public class DatabaseRepository {
@@ -30,7 +31,7 @@ public class DatabaseRepository {
         this.scheduleDao = scheduleDao;
     }
 
-    public LiveData<List<Date>> getDate() {return dateDao.getAllDate();}
+    public LiveData<Date> getDate() {return dateDao.getAllDate();}
 
     public LiveData<List<Login>> getLogin() {return loginDao.getAllLogin();}
 
@@ -38,10 +39,16 @@ public class DatabaseRepository {
 
     public LiveData<List<Schedule>> getSchedule() {return scheduleDao.getAllSchedule();}
 
-    public void saveDateList(final List<Date> dates)
+    public void insertDate(final Date dates)
     {
-        Completable.fromAction(() -> dateDao.insert(dates))
-                .subscribeOn(Schedulers.io())
+        Completable.fromAction(new Action() {
+            @Override
+            public void run() throws Exception {
+                dateDao.deleteAll();
+                dateDao.insert(dates);
+            }
+        }).subscribeOn(Schedulers.io())
                 .subscribe();
     }
+
 }

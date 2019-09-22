@@ -1,24 +1,14 @@
 package com.yugorsk.school6.repository;
 
-import android.os.Build;
-import android.util.Log;
-import android.widget.Toast;
-
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.arch.core.util.Function;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.yugorsk.school6.FirebaseQueryLiveData;
-import com.yugorsk.school6.MainActivity;
-import com.yugorsk.school6.data.Date;
+import com.yugorsk.school6.network.FirebaseQueryLiveData;
 
 import java.util.ArrayList;
 import java.util.List;

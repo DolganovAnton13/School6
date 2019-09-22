@@ -7,12 +7,12 @@
 
     <fragment
         android:id="@+id/AboutSchool"
-        android:name="com.yugorsk.school6.FragmentAboutSchool"
+        android:name="com.yugorsk.school6.view.fragment.FragmentAboutSchool"
         android:label="fragment_fragment_about_school"
         tools:layout="@layout/fragment_about_school" />
     <fragment
         android:id="@+id/Main"
-        android:name="com.yugorsk.school6.FragmentMain"
+        android:name="com.yugorsk.school6.view.fragment.FragmentMain"
         android:label="fragment_main"
         tools:layout="@layout/fragment_main" />
 </navigation>
