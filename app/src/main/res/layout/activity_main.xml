@@ -13,13 +13,6 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/colorPrimary" >
-            </androidx.appcompat.widget.Toolbar>
-
             <FrameLayout
                 android:id="@+id/hostFragment"
                 android:name="androidx.navigation.fragment.NavHostFragment"

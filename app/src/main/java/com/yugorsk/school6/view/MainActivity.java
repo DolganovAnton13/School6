@@ -3,6 +3,7 @@ package com.yugorsk.school6.view;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -38,15 +39,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        binding.toolbar.setTitle("Главная");
-        setSupportActionBar(binding.toolbar);
-        //binding.spinnerAboutSchool.setVisibility(View.GONE);
 
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, binding.drawerLayout, binding.toolbar, R.string.main, R.string.close);
-
-        toggle.syncState();
-        binding.drawerLayout.addDrawerListener(toggle);
         navigationView = findViewById(R.id.navigationView);
         navigationView.getMenu().getItem(0).setChecked(true);
         //navController = Navigation.findNavController(this, R.id.hostFragment);
@@ -74,22 +67,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.Main:
                 //navController.navigate(R.id.Main);
                 navigationView.getMenu().getItem(0).setChecked(true);
-                binding.toolbar.setTitle("Главная");
                 selectedFragment = new FragmentMain();
-                //binding.spinnerAboutSchool.setVisibility(View.GONE);
                 break;
 
             case R.id.AboutSchool:
                 //navController.navigate(R.id.AboutSchool);
                 navigationView.getMenu().getItem(1).setChecked(true);
-                binding.toolbar.setTitle("О школе");
-                //binding.spinnerAboutSchool.setVisibility(View.VISIBLE);
                 selectedFragment = new FragmentAboutSchool();
                 break;
 
             default:
                 navigationView.getMenu().getItem(0).setChecked(true);
-                binding.toolbar.setTitle("Главная");
                 selectedFragment = new FragmentMain();
                 break;
 
@@ -101,4 +89,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
+    public void setToolbar(Toolbar toolbar, String title)
+    {
+        if(toolbar!=null)
+        {
+            toolbar.setTitle(title);
+            setSupportActionBar(toolbar);
+            ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                    this, binding.drawerLayout, toolbar, R.string.main, R.string.close);
+
+            binding.drawerLayout.setDrawerListener(toggle);
+            toggle.syncState();
+        }
+        else
+        {
+            binding.drawerLayout.setDrawerListener(null);
+        }
+    }
 }

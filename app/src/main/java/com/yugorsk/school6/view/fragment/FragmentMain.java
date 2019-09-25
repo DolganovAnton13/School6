@@ -34,7 +34,6 @@ import com.yugorsk.school6.view.MainActivity;
  */
 public class FragmentMain extends Fragment {
 
-    private MainActivity activity;
     private MainViewModel model;
     private FragmentMainBinding binding;
     Animation uptodown, downtoup, lefttoright, righttoleft;
@@ -63,6 +62,18 @@ public class FragmentMain extends Fragment {
             getDateFromServer();
         }
         showDate();
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        ((MainActivity)getActivity()).setToolbar(binding.toolbarMain,"Главная");
+    }
+
+    @Override
+    public void onDestroyView() {
+        ((MainActivity)getActivity()).setToolbar(null,"");
+        super.onDestroyView();
     }
 
     private void getDateFromServer() {
