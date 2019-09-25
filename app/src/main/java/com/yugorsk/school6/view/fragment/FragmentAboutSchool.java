@@ -36,6 +36,7 @@ public class FragmentAboutSchool extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         ((MainActivity)getActivity()).setToolbar(binding.toolbarAboutSchool,"");
+        ((MainActivity)getActivity()).navigationView.getMenu().getItem(1).setChecked(true);
     }
 
     @Override

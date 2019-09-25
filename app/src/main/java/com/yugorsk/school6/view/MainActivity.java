@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -15,6 +16,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 
@@ -31,7 +33,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     NavController navController;
     ActivityMainBinding binding;
-    NavigationView navigationView;
+    public NavigationView navigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,33 +68,28 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             case R.id.Main:
                 //navController.navigate(R.id.Main);
-                navigationView.getMenu().getItem(0).setChecked(true);
                 selectedFragment = new FragmentMain();
                 break;
 
             case R.id.AboutSchool:
                 //navController.navigate(R.id.AboutSchool);
-                navigationView.getMenu().getItem(1).setChecked(true);
                 selectedFragment = new FragmentAboutSchool();
                 break;
 
             default:
-                navigationView.getMenu().getItem(0).setChecked(true);
                 selectedFragment = new FragmentMain();
                 break;
 
         }
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        getSupportFragmentManager().popBackStack(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
         fragmentTransaction.replace(binding.hostFragment.getId(), selectedFragment);
+        fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
         return true;
     }
 
-    public void setToolbar(Toolbar toolbar, String title)
-    {
-        if(toolbar!=null)
-        {
+    public void setToolbar(Toolbar toolbar, String title) {
+        if (toolbar != null) {
             toolbar.setTitle(title);
             setSupportActionBar(toolbar);
             ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -100,10 +97,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             binding.drawerLayout.setDrawerListener(toggle);
             toggle.syncState();
-        }
-        else
-        {
+        } else {
             binding.drawerLayout.setDrawerListener(null);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        if (binding.drawerLayout != null && binding.drawerLayout.isDrawerOpen(GravityCompat.START))
+            binding.drawerLayout.closeDrawer(Gravity.LEFT);
+        else {
+
+            int count = getSupportFragmentManager().getBackStackEntryCount();
+
+            if (count == 0)
+                super.onBackPressed();
+            else
+                getSupportFragmentManager().popBackStack();
         }
     }
 }

@@ -36,7 +36,7 @@ public class FragmentMain extends Fragment {
 
     private MainViewModel model;
     private FragmentMainBinding binding;
-    Animation uptodown, downtoup, lefttoright, righttoleft;
+    private Animation uptodown, downtoup, lefttoright, righttoleft;
 
     @Override
     public void onAttach(@NonNull Context context) {
@@ -68,6 +68,7 @@ public class FragmentMain extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         ((MainActivity)getActivity()).setToolbar(binding.toolbarMain,"Главная");
+        ((MainActivity)getActivity()).navigationView.getMenu().getItem(0).setChecked(true);
     }
 
     @Override
