@@ -16,16 +16,9 @@ import com.yugorsk.school6.R;
  */
 public class FragmentAboutSchool1 extends Fragment {
 
-
-    public FragmentAboutSchool1() {
-        // Required empty public constructor
-    }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_about_school1, container, false);
     }
 
