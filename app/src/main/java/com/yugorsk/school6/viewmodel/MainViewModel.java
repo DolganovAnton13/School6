@@ -24,37 +24,36 @@ public class MainViewModel extends ViewModel {
     private DataRepository data;
     private DatabaseRepository database;
 
-    public MainViewModel(){
-        database= App.getComponent().getDatabaseRepository();
-        data=App.getComponent().getDataRepository();
+    public MainViewModel() {
+        database = App.getComponent().getDatabaseRepository();
+        data = App.getComponent().getDataRepository();
     }
 
-    public LiveData<Date> getDate()
-    {
+    public LiveData<Date> getDate() {
         return database.getDate();
     }
 
-    public LiveData<List<Login>> getLogin()
-    {
+    public LiveData<List<Login>> getLogin() {
         return database.getLogin();
     }
 
-    public LiveData<List<News>> getNews()
-    {
+    public LiveData<List<News>> getNews() {
         return database.getNews();
     }
 
-    public LiveData<List<Schedule>> getSchedule()
-    {
+    public LiveData<Schedule> getSchedule() {
         return database.getSchedule();
     }
 
-    public void insertDate(Date dates)
-    {
+    public void insertSchedule(Schedule schedule) {
+        database.insertSchedule(schedule);
+    }
+
+    public void insertDate(Date dates) {
         database.insertDate(dates);
     }
 
-    public LiveData<List<String>> getDateFromServer(){
+    public LiveData<List<String>> getDateFromServer() {
         return data.getDateLiveData();
     }
 

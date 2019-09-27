@@ -39,11 +39,6 @@ public class FragmentMain extends Fragment {
     private Animation uptodown, downtoup, lefttoright, righttoleft;
 
     @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false);

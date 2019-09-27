@@ -37,7 +37,7 @@ public class DatabaseRepository {
 
     public LiveData<List<News>> getNews() {return newsDao.getAllNews();}
 
-    public LiveData<List<Schedule>> getSchedule() {return scheduleDao.getAllSchedule();}
+    public LiveData<Schedule> getSchedule() {return scheduleDao.getAllSchedule();}
 
     public void insertDate(final Date dates)
     {
@@ -51,4 +51,15 @@ public class DatabaseRepository {
                 .subscribe();
     }
 
+    public void insertSchedule(final Schedule schedule)
+    {
+        Completable.fromAction(new Action() {
+            @Override
+            public void run() throws Exception {
+                scheduleDao.deleteAll();
+                scheduleDao.insert(schedule);
+            }
+        }).subscribeOn(Schedulers.io())
+                .subscribe();
+    }
 }

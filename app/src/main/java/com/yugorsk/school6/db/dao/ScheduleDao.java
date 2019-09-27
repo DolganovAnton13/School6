@@ -17,13 +17,7 @@ import java.util.List;
 public interface ScheduleDao {
 
     @Query("SELECT * FROM Schedule")
-    LiveData<List<Schedule>> getAllSchedule();
-
-    @Query("SELECT * FROM Schedule WHERE id = :id")
-    LiveData<Schedule> getScheduleById(String id);
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(List<Schedule> schedules);
+    LiveData<Schedule> getAllSchedule();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Schedule schedule);
@@ -33,4 +27,7 @@ public interface ScheduleDao {
 
     @Delete
     void delete(Schedule schedule);
+
+    @Query("DELETE FROM Schedule")
+    void deleteAll();
 }

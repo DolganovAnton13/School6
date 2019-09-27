@@ -27,6 +27,7 @@ import com.yugorsk.school6.view.fragment.FragmentAboutSchool;
 import com.yugorsk.school6.view.fragment.FragmentMain;
 import com.yugorsk.school6.R;
 import com.yugorsk.school6.databinding.ActivityMainBinding;
+import com.yugorsk.school6.view.fragment.FragmentSchedule;
 
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -70,12 +71,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 //navController.navigate(R.id.Main);
                 selectedFragment = new FragmentMain();
                 break;
-
             case R.id.AboutSchool:
                 //navController.navigate(R.id.AboutSchool);
                 selectedFragment = new FragmentAboutSchool();
                 break;
-
+            case R.id.Schedule:
+                selectedFragment=new FragmentSchedule();
+                break;
             default:
                 selectedFragment = new FragmentMain();
                 break;
