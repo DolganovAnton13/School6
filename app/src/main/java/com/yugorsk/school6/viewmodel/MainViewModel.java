@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel;
 import androidx.room.Database;
 
 
+import com.google.firebase.storage.StorageReference;
 import com.yugorsk.school6.App;
 import com.yugorsk.school6.data.Date;
 import com.yugorsk.school6.data.Login;
@@ -57,4 +58,8 @@ public class MainViewModel extends ViewModel {
         return data.getDateLiveData();
     }
 
+    public LiveData<List<StorageReference>> getScheduleFromServer()
+    {
+        return data.getScheduleLiveData();
+    }
 }

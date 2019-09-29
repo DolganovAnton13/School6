@@ -64,8 +64,8 @@ dependencies {
     // PhotoView
     implementation 'com.github.chrisbanes:PhotoView:1.2.6'
 
-    // Rx2Firebase
-    implementation 'com.github.FrangSierra:RxFirebase:1.5.6'
+    // Picasso
+    implementation 'com.squareup.picasso:picasso:2.5.2'
 
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.12'
