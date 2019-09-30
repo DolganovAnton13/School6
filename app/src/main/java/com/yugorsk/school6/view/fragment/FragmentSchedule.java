@@ -23,6 +23,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FileDownloadTask;
 import com.squareup.picasso.Picasso;
 import com.yugorsk.school6.R;
+import com.yugorsk.school6.data.Schedule;
 import com.yugorsk.school6.databinding.FragmentScheduleBinding;
 import com.yugorsk.school6.network.NetworkState;
 import com.yugorsk.school6.view.MainActivity;
@@ -59,10 +60,7 @@ public class FragmentSchedule extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         model = ViewModelProviders.of(this).get(MainViewModel.class);
 
-        NetworkState networkState = new NetworkState(getActivity());
-        if(networkState.isOnline()) {
-            setSpinner();
-        }
+        setSpinner();
 
     }
 
@@ -79,16 +77,28 @@ public class FragmentSchedule extends Fragment {
         super.onDestroyView();
     }
 
-    private void setSpinner()
-    {
+    private void showShedule() {
+        model.getSchedule().observe(this, schedule -> {
+            if (schedule != null)
+                binding.spinnerSchedule.setSelection(schedule.getIndexPicture());
+            else binding.spinnerSchedule.setSelection(0);
+        });
+    }
+
+    private void setSpinner() {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, numberClass);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.spinnerSchedule.setAdapter(adapter);
 
+        showShedule();
         AdapterView.OnItemSelectedListener itemSelectedListener = new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                getSchedule((int) id);
+                NetworkState networkState = new NetworkState(getActivity());
+                if (networkState.isOnline()) {
+                    getSchedule((int) id);
+                }
+                    model.insertSchedule(new Schedule((int) id));
             }
 
             @Override
@@ -101,9 +111,8 @@ public class FragmentSchedule extends Fragment {
         photoView.update();
     }
 
-    private void getSchedule(int id)
-    {
-        model.getScheduleFromServer().observe(this,storageReferences -> {
+    private void getSchedule(int id) {
+        model.getScheduleFromServer().observe(this, storageReferences -> {
             try {
                 final File localFile = File.createTempFile("images", "jpg");
                 storageReferences.get(id).getFile(localFile)
@@ -114,11 +123,11 @@ public class FragmentSchedule extends Fragment {
                                 Picasso.with(getContext()).load(Uri.fromFile(localFile)).into(binding.imageshedule);
                             }
                         }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
 
-                            }
-                        });
+                    }
+                });
             } catch (IOException e) {
                 e.printStackTrace();
             }
