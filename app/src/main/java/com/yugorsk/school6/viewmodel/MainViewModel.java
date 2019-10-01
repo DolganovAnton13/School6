@@ -42,12 +42,12 @@ public class MainViewModel extends ViewModel {
         return database.getNews();
     }
 
-    public LiveData<Schedule> getSchedule() {
-        return database.getSchedule();
+    public LiveData<Schedule> getIndexSchedule() {
+        return database.getIndexSchedule();
     }
 
-    public void insertSchedule(Schedule schedule) {
-        database.insertSchedule(schedule);
+    public void insertIndexSchedule(Schedule schedule) {
+        database.insertIndexSchedule(schedule);
     }
 
     public void insertDate(Date dates) {

@@ -17,7 +17,7 @@ import java.util.List;
 public interface ScheduleDao {
 
     @Query("SELECT * FROM Schedule")
-    LiveData<Schedule> getAllSchedule();
+    LiveData<Schedule> getIndexSchedule();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Schedule schedule);

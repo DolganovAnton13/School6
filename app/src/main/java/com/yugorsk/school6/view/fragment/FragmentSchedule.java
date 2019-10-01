@@ -11,6 +11,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.storage.FileDownloadTask;
 import com.squareup.picasso.Picasso;
 import com.yugorsk.school6.R;
@@ -77,11 +79,19 @@ public class FragmentSchedule extends Fragment {
         super.onDestroyView();
     }
 
+   @Override
+    public void onPause() {
+        model.insertIndexSchedule(new Schedule((int)binding.spinnerSchedule.getSelectedItemId()));
+        super.onPause();
+    }
+
     private void showShedule() {
-        model.getSchedule().observe(this, schedule -> {
+
+        model.getIndexSchedule().observe(this, schedule -> {
             if (schedule != null)
                 binding.spinnerSchedule.setSelection(schedule.getIndexPicture());
-            else binding.spinnerSchedule.setSelection(0);
+            else
+                binding.spinnerSchedule.setSelection(0);
         });
     }
 
@@ -94,11 +104,13 @@ public class FragmentSchedule extends Fragment {
         AdapterView.OnItemSelectedListener itemSelectedListener = new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
                 NetworkState networkState = new NetworkState(getActivity());
                 if (networkState.isOnline()) {
-                    getSchedule((int) id);
+                    getSchedule((int)id);
+                } else {
+                    Snackbar.make(binding.spinnerSchedule, getResources().getString(R.string.no_internet_connection), Snackbar.LENGTH_LONG).show();
                 }
-                    model.insertSchedule(new Schedule((int) id));
             }
 
             @Override
@@ -125,7 +137,7 @@ public class FragmentSchedule extends Fragment {
                         }).addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-
+                        binding.imageshedule.setImageResource(R.drawable.noschedule);
                     }
                 });
             } catch (IOException e) {
