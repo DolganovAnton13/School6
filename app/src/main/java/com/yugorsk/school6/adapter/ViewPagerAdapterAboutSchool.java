@@ -13,7 +13,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.yugorsk.school6.R;
 import com.yugorsk.school6.view.ShowPhoto;
 
-public class ViewPagerAdapter extends PagerAdapter {
+public class ViewPagerAdapterAboutSchool extends PagerAdapter {
 
     private Context context;
     private LayoutInflater layoutInflater;
@@ -23,7 +23,7 @@ public class ViewPagerAdapter extends PagerAdapter {
     private Integer[] images4 = {R.drawable.aboutschool14, R.drawable.aboutschool15, R.drawable.aboutschool16, R.drawable.aboutschool17};
     private int number;
 
-    public ViewPagerAdapter(Context context, int numberFragment) {
+    public ViewPagerAdapterAboutSchool(Context context, int numberFragment) {
         this.context = context;
         this.number = numberFragment;
     }

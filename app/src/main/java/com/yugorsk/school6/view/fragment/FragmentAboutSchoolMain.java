@@ -25,7 +25,7 @@ import com.yugorsk.school6.view.MainActivity;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentAboutSchool extends Fragment {
+public class FragmentAboutSchoolMain extends Fragment {
 
 
     private FragmentAboutSchoolBinding binding;

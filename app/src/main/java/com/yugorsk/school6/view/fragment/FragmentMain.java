@@ -48,7 +48,7 @@ public class FragmentMain extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
-        model = ViewModelProviders.of(this).get(MainViewModel.class);
+        model = ViewModelProviders.of(getActivity()).get(MainViewModel.class);
 
         loadAnimation();
 
@@ -73,17 +73,15 @@ public class FragmentMain extends Fragment {
     }
 
     private void getDateFromServer() {
-        model.getDateFromServer().observe(this, dates -> {
-
-            CalendarDate calendarDate = new CalendarDate(dates);
-            model.insertDate(calendarDate.toDate());
+        model.getDateFromServer().observe(getViewLifecycleOwner(), dates -> {
+            model.insertDate(dates);
         });
     }
 
 
     private void showDate() {
         LiveData<Date> date = model.getDate();
-        date.observe(this, dates -> {
+        date.observe(getViewLifecycleOwner(), dates -> {
             if (dates != null) {
 
                 CalendarDate calendarDate = new CalendarDate(dates);

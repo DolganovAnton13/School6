@@ -47,10 +47,6 @@ public class FragmentSchedule extends Fragment {
     String[] numberClass = {"1 класс", "2 класс", "3 класс", "4 класс", "5-11 класс"};
     private final int totalProgressTime = 5;
 
-    public FragmentSchedule() {
-    }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -60,10 +56,8 @@ public class FragmentSchedule extends Fragment {
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        model = ViewModelProviders.of(this).get(MainViewModel.class);
-
+        model = ViewModelProviders.of(getActivity()).get(MainViewModel.class);
         setSpinner();
-
     }
 
     @Override
@@ -87,7 +81,7 @@ public class FragmentSchedule extends Fragment {
 
     private void showShedule() {
 
-        model.getIndexSchedule().observe(this, schedule -> {
+        model.getIndexSchedule().observe(getViewLifecycleOwner(), schedule -> {
             if (schedule != null)
                 binding.spinnerSchedule.setSelection(schedule.getIndexPicture());
             else
@@ -124,10 +118,10 @@ public class FragmentSchedule extends Fragment {
     }
 
     private void getSchedule(int id) {
-        model.getScheduleFromServer().observe(this, storageReferences -> {
+        model.getScheduleFromServer(id).observe(getViewLifecycleOwner(), storageReferences -> {
             try {
                 final File localFile = File.createTempFile("images", "jpg");
-                storageReferences.get(id).getFile(localFile)
+                storageReferences.getFile(localFile)
                         .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
                             @Override
                             public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {

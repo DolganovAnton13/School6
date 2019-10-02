@@ -9,6 +9,7 @@ import androidx.room.Database;
 
 import com.google.firebase.storage.StorageReference;
 import com.yugorsk.school6.App;
+import com.yugorsk.school6.data.Call;
 import com.yugorsk.school6.data.Date;
 import com.yugorsk.school6.data.Login;
 import com.yugorsk.school6.data.News;
@@ -54,12 +55,16 @@ public class MainViewModel extends ViewModel {
         database.insertDate(dates);
     }
 
-    public LiveData<List<String>> getDateFromServer() {
+    public LiveData<Date> getDateFromServer() {
         return data.getDateLiveData();
     }
 
-    public LiveData<List<StorageReference>> getScheduleFromServer()
+    public LiveData<StorageReference> getScheduleFromServer(int id)
     {
-        return data.getScheduleLiveData();
+        return data.getScheduleLiveData(id);
+    }
+
+    public LiveData<Call> getCallFromServer() {
+        return data.getCallLiveData();
     }
 }

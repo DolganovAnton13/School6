@@ -7,23 +7,19 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.navigation.NavController;
 
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import android.view.Gravity;
 import android.view.MenuItem;
-import android.view.View;
 
 
 import com.google.android.material.navigation.NavigationView;
 
-import com.yugorsk.school6.view.fragment.FragmentAboutSchool;
+import com.yugorsk.school6.view.fragment.FragmentAboutSchoolMain;
+import com.yugorsk.school6.view.fragment.FragmentCallScheduleMain;
 import com.yugorsk.school6.view.fragment.FragmentMain;
 import com.yugorsk.school6.R;
 import com.yugorsk.school6.databinding.ActivityMainBinding;
@@ -44,15 +40,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
         navigationView = findViewById(R.id.navigationView);
-        navigationView.getMenu().getItem(0).setChecked(true);
         //navController = Navigation.findNavController(this, R.id.hostFragment);
 
         //NavigationUI.setupWithNavController(navigationView, navController);
 
         navigationView.setNavigationItemSelectedListener(this);
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(binding.hostFragment.getId(), new FragmentMain());
-        fragmentTransaction.commit();
+        if(savedInstanceState==null) {
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.replace(binding.hostFragment.getId(), new FragmentMain());
+            fragmentTransaction.commit();
+        }
     }
 
 
@@ -73,16 +70,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.AboutSchool:
                 //navController.navigate(R.id.AboutSchool);
-                selectedFragment = new FragmentAboutSchool();
+                selectedFragment = new FragmentAboutSchoolMain();
                 break;
             case R.id.Schedule:
                 selectedFragment=new FragmentSchedule();
+                break;
+            case R.id.Call:
+                selectedFragment=new FragmentCallScheduleMain();
                 break;
             default:
                 selectedFragment = new FragmentMain();
                 break;
 
         }
+
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(binding.hostFragment.getId(), selectedFragment);
         fragmentTransaction.addToBackStack(null);
@@ -119,4 +120,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getSupportFragmentManager().popBackStack();
         }
     }
+
 }

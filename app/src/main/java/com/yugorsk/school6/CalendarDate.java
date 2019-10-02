@@ -1,5 +1,7 @@
 package com.yugorsk.school6;
 
+import android.util.Log;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -12,7 +14,6 @@ import java.util.List;
 public class CalendarDate {
 
     Date date;
-    List<String> listDate;
     ArrayList<Integer> listDays;
     private String firstQuarterTo = "До конца 1-ой четверти -\n";
     private String secondQuarterTo = "До конца 2-ой четверти -\n";
@@ -27,11 +28,6 @@ public class CalendarDate {
         this.date = date;
     }
 
-    public CalendarDate(List<String> date) {
-        this.listDate = date;
-    }
-
-
     public String CurrentDate() {
         try {
             Calendar calendar = new GregorianCalendar();
@@ -39,14 +35,14 @@ public class CalendarDate {
 
             listDays.clear();
 
-            listDays.add(DifferenceDate(myDay, date.getQuarterOneFrom()));
             listDays.add(DifferenceDate(myDay, date.getQuarterOneTo()));
-            listDays.add(DifferenceDate(myDay, date.getQuarterTwoFrom()));
+            listDays.add(DifferenceDate(myDay, date.getQuarterOneFrom()));
             listDays.add(DifferenceDate(myDay, date.getQuarterTwoTo()));
-            listDays.add(DifferenceDate(myDay, date.getQuarterThreeFrom()));
+            listDays.add(DifferenceDate(myDay, date.getQuarterTwoFrom()));
             listDays.add(DifferenceDate(myDay, date.getQuarterThreeTo()));
-            listDays.add(DifferenceDate(myDay, date.getQuarterFourFrom()));
+            listDays.add(DifferenceDate(myDay, date.getQuarterThreeFrom()));
             listDays.add(DifferenceDate(myDay, date.getQuarterFourTo()));
+            listDays.add(DifferenceDate(myDay, date.getQuarterFourFrom()));
 
             if (listDays.size() == 0) {
                 return school;
@@ -112,10 +108,5 @@ public class CalendarDate {
             return " дня";
 
         return " дней";
-    }
-
-
-    public Date toDate() {
-        return new Date(listDate.get(0), listDate.get(1), listDate.get(2), listDate.get(3), listDate.get(4), listDate.get(5), listDate.get(6), listDate.get(7));
     }
 }

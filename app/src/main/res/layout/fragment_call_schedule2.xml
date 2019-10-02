@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_call_schedule2"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:orientation="vertical"
+
+    android:weightSum="1"
+    android:background="@color/white">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:text="Расписание сокращенных звонков"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/dateText"
+                android:textColor="@color/black"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:textStyle="bold"/>
+
+            <TextView android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="1 смена для 1, 4-11 классов"
+                android:textColor="@color/black"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:textStyle="bold"/>
+            <TableLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="*"
+                android:background="@color/divider"
+                android:layout_marginTop="5dp">
+                <TableRow android:background="@color/background"
+                    android:padding="5dp"
+                    android:gravity="center"
+                    android:layout_marginTop="1dp">
+                    <TextView android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="№ урока"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/black"
+                        />
+                    <TextView android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Время"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/black"
+                        />
+                </TableRow>
+            </TableLayout>
+
+
+            <TableLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="*"
+                android:background="@color/list">
+
+                <TableRow android:background="@color/white"
+                    android:padding="5dp"
+                    android:layout_marginTop="1dp"
+                    android:gravity="center">
+                    <TextView android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="1"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/black"
+                        />
+                    <TextView android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/lesson1_1"
+                        android:text="-"
+                        android:textColor="@color/black"
+                        android:gravity="center_horizontal"
+                        />
+                </TableRow>
+                <TableRow  android:background="@color/white"
+                    android:padding="5dp"
+                    android:layout_marginTop="1dp"
+                    android:gravity="center">
+                    <TextView android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="2"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/black"/>
+                    <TextView android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:id="@+id/lesson1_2"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/black"
+                        />
+                </TableRow>
+                <TableRow android:background="@color/white"
+                    android:padding="5dp"
+                    android:layout_marginTop="1dp"
+                    android:gravity="center">
+                    <TextView android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="3"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/black" />
+                    <TextView android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:id="@+id/lesson1_3"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/black"/>
+                </TableRow>
+                <TableRow  android:background="@color/white"
+                    android:padding="5dp"
+                    android:layout_marginTop="1dp"
+                    android:gravity="center">
+                    <TextView android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="4"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/black"/>
+                    <TextView android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:id="@+id/lesson1_4"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/black"/>
+                </TableRow>
+                <TableRow android:background="@color/white"
+                    android:padding="5dp"
+                    android:layout_marginTop="1dp"
+                    android:gravity="center">
+                    <TextView android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="5"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/black" />
+                    <TextView android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:id="@+id/lesson1_5"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/black"/>
+                </TableRow>
+                <TableRow  android:background="@color/white"
+                    android:padding="5dp"
+                    android:layout_marginTop="1dp"
+                    android:gravity="center">
+                    <TextView android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="6"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/black"/>
+                    <TextView android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:id="@+id/lesson1_6"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/black"/>
+                </TableRow>
+
+            </TableLayout>
+
+
+            <TextView android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="2 смена для 2-3 классов"
+                android:textColor="@color/black"
+                android:gravity="center_horizontal"
+                android:layout_marginTop="16dp"
+                android:textStyle="bold"/>
+            <TableLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="*"
+                android:background="@color/divider"
+                android:layout_marginTop="5dp">
+                <TableRow android:background="@color/background"
+                    android:padding="5dp"
+                    android:gravity="center"
+                    android:layout_marginTop="1dp">
+                    <TextView android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="№ урока"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/black"
+                        />
+                    <TextView android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Время"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/black"
+                        />
+                </TableRow>
+            </TableLayout>
+
+
+            <TableLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:stretchColumns="*"
+                android:background="@color/list">
+
+                <TableRow android:background="@color/white"
+                    android:padding="5dp"
+                    android:layout_marginTop="1dp"
+                    android:gravity="center">
+                    <TextView android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="1"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/black"
+                        />
+                    <TextView android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:id="@+id/lesson2_1"
+                        android:textColor="@color/black"
+                        android:gravity="center_horizontal"
+                        />
+                </TableRow>
+                <TableRow  android:background="@color/white"
+                    android:padding="5dp"
+                    android:layout_marginTop="1dp"
+                    android:gravity="center">
+                    <TextView android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="2"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/black"/>
+                    <TextView android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:id="@+id/lesson2_2"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/black"
+                        />
+                </TableRow>
+                <TableRow android:background="@color/white"
+                    android:padding="5dp"
+                    android:layout_marginTop="1dp"
+                    android:gravity="center">
+                    <TextView android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="3"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/black" />
+                    <TextView android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:id="@+id/lesson2_3"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/black"/>
+                </TableRow>
+                <TableRow  android:background="@color/white"
+                    android:padding="5dp"
+                    android:layout_marginTop="1dp"
+                    android:gravity="center">
+                    <TextView android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="4"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/black"/>
+                    <TextView android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:id="@+id/lesson2_4"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/black"/>
+                </TableRow>
+                <TableRow android:background="@color/white"
+                    android:padding="5dp"
+                    android:layout_marginTop="1dp"
+                    android:gravity="center">
+                    <TextView android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="5"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/black" />
+                    <TextView android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="-"
+                        android:id="@+id/lesson2_5"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/black"/>
+                </TableRow>
+
+            </TableLayout>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
+</layout>

@@ -29,6 +29,7 @@ public class Date {
         this.quarterFourFrom = quarterFourFrom;
         this.quarterFourTo = quarterFourTo;
     }
+    public Date(){}
 
     public long getId() {
         return id;

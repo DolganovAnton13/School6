@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.yugorsk.school6.R;
-import com.yugorsk.school6.adapter.ViewPagerAdapter;
+import com.yugorsk.school6.adapter.ViewPagerAdapterAboutSchool;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -37,10 +37,10 @@ public class FragmentAboutSchool5 extends Fragment {
         viewPager = view.findViewById(R.id.viewPagerAboutSchool4);
 
         sliderDotspanel = view.findViewById(R.id.SliderDots2);
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getContext(), 3);
-        viewPager.setAdapter(viewPagerAdapter);
+        ViewPagerAdapterAboutSchool viewPagerAdapterAboutSchool = new ViewPagerAdapterAboutSchool(getContext(), 3);
+        viewPager.setAdapter(viewPagerAdapterAboutSchool);
 
-        dotscount = viewPagerAdapter.getCount();
+        dotscount = viewPagerAdapterAboutSchool.getCount();
         dots = new ImageView[dotscount];
 
         for (int i = 0; i < dotscount; i++) {
