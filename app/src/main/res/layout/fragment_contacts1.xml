@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_contacts"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <TextView
+        android:text="@string/address2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:text="@string/e_mail2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autoLink="web"
+        android:linksClickable="true"
+        android:textColor="@color/black"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp" />
+
+    <TextView
+        android:text="@string/url"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autoLink="web"
+        android:linksClickable="true"
+        android:textColor="@color/black"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp" />
+    <TextView
+        android:text="@string/vk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autoLink="web"
+        android:linksClickable="true"
+        android:textColor="@color/black"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp" />
+
+    <TableLayout
+        android:id="@+id/tableContacts2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="*"
+        android:background="@color/divider"
+        android:layout_marginTop="5dp">
+        <TableRow android:background="@color/background"
+            android:padding="5dp"
+            android:gravity="center"
+            android:layout_marginTop="1dp">
+            <TextView android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="ФИО / Должность"
+                android:gravity="center_horizontal"
+                android:textColor="@color/black"
+                android:layout_marginLeft="50dp" />
+            <TextView android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="Номер"
+                android:gravity="center_horizontal"
+                android:textColor="@color/black"
+                android:layout_marginLeft="50dp" />
+        </TableRow>
+    </TableLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <TableLayout
+            android:id="@+id/tableContacts"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stretchColumns="*"
+            android:background="@color/list">
+
+            <TableRow android:background="@color/white"
+                android:padding="5dp"
+                android:layout_marginTop="1dp"
+                android:gravity="center">
+                <TextView android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Komisarenko"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="16dp" />
+                <TextView android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/phone1"
+                    android:text="7-40-94"
+                    android:textColor="@color/colorAccent"
+                    android:gravity="center_horizontal"
+                    android:autoLink="phone" />
+            </TableRow>
+            <TableRow  android:background="@color/white"
+                android:padding="5dp"
+                android:layout_marginTop="1dp"
+                android:gravity="center">
+                <TextView android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Rybakova"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="16dp" />
+                <TextView android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="7-26-34"
+                    android:gravity="center_horizontal"
+                    android:id="@+id/phone2"
+                    android:textColor="@color/colorAccent"
+                    android:autoLink="phone" />
+            </TableRow>
+            <TableRow android:background="@color/white"
+                android:padding="5dp"
+                android:layout_marginTop="1dp"
+                android:gravity="center">
+
+                <TextView android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Votinceva"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="16dp" />
+
+                <TextView android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="6-87-37"
+                    android:gravity="center_horizontal"
+                    android:id="@+id/phone3"
+                    android:autoLink="phone"
+                    android:textColor="@color/colorAccent"/>
+            </TableRow>
+            <TableRow  android:background="@color/white"
+                android:padding="5dp"
+                android:layout_marginTop="1dp"
+                android:gravity="center">
+                <TextView android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Bogomolova"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="16dp" />
+                <TextView android:layout_width="fill_parent"
+                    android:id="@+id/phone4"
+                    android:layout_height="wrap_content"
+                    android:text="7-24-47"
+                    android:gravity="center_horizontal"
+                    android:textColor="@color/colorAccent"
+                    android:autoLink="phone" />
+            </TableRow>
+            <TableRow android:background="@color/white"
+                android:padding="5dp"
+                android:layout_marginTop="1dp"
+                android:gravity="center">
+                <TextView android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Filonova"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="16dp" />
+                <TextView android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="7-56-62"
+                    android:gravity="center_horizontal"
+                    android:id="@+id/phone5"
+                    android:autoLink="phone"
+                    android:textColor="@color/colorAccent"/>
+            </TableRow>
+            <TableRow  android:background="@color/white"
+                android:padding="5dp"
+                android:layout_marginTop="1dp"
+                android:gravity="center">
+                <TextView android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Danilova"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="16dp" />
+                <TextView android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="7-56-62"
+                    android:gravity="center_horizontal"
+                    android:id="@+id/phone6"
+                    android:autoLink="phone"
+                    android:textColor="@color/colorAccent" />
+            </TableRow>
+            <TableRow android:background="@color/white"
+                android:padding="5dp"
+                android:layout_marginTop="1dp"
+                android:gravity="center" >
+                <TextView android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Hairulina"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="16dp" />
+                <TextView android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="7-30-28"
+                    android:gravity="center_horizontal"
+                    android:id="@+id/phone7"
+                    android:autoLink="phone"
+                    android:textColor="@color/colorAccent" />
+            </TableRow>
+            <TableRow android:background="@color/white"
+                android:padding="5dp"
+                android:layout_marginTop="1dp"
+                android:gravity="center">
+                <TextView android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Zaiceva"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="16dp" />
+                <TextView android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="7-47-58"
+                    android:id="@+id/phone9"
+                    android:gravity="center_horizontal"
+                    android:autoLink="phone"
+                    android:textColor="@color/colorAccent"/>
+            </TableRow>
+            <TableRow android:background="@color/white"
+                android:padding="5dp"
+                android:layout_marginTop="1dp"
+                android:gravity="center" >
+                <TextView android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Grehova"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="16dp" />
+                <TextView android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="7-20-59"
+                    android:id="@+id/phone10"
+                    android:gravity="center_horizontal"
+                    android:autoLink="phone"
+                    android:textColor="@color/colorAccent"/>
+            </TableRow>
+            <TableRow  android:background="@color/white"
+                android:padding="5dp"
+                android:layout_marginTop="1dp"
+                android:gravity="center">
+                <TextView android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Медицинский  пункт"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="16dp" />
+                <TextView android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="7-30-28"
+                    android:id="@+id/phone11"
+                    android:gravity="center_horizontal"
+                    android:autoLink="phone"
+                    android:textColor="@color/colorAccent" />
+            </TableRow>
+            <TableRow android:background="@color/white"
+                android:padding="5dp"
+                android:layout_marginTop="1dp"
+                android:gravity="center">
+                <TextView android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Deshevyh"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="16dp" />
+                <TextView android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="6-87-37 \n(приёмная)"
+                    android:id="@+id/phone12"
+                    android:gravity="center_horizontal"
+                    android:autoLink="phone"
+                    android:textColor="@color/colorAccent"/>
+            </TableRow>
+            <TableRow  android:background="@color/white"
+                android:padding="5dp"
+                android:layout_marginTop="1dp"
+                android:gravity="center">
+                <TextView android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Tadyko"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="16dp" />
+                <TextView android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="7-56-62"
+                    android:id="@+id/phone13"
+                    android:gravity="center_horizontal"
+                    android:autoLink="phone"
+                    android:textColor="@color/colorAccent" />
+            </TableRow>
+            <TableRow android:background="@color/white"
+                android:padding="5dp"
+                android:layout_marginTop="1dp"
+                android:gravity="center">
+                <TextView android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Lyashok"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="16dp" />
+                <TextView android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="6-87-37 \n(приёмная)"
+                    android:gravity="center_horizontal"
+                    android:id="@+id/phone14"
+                    android:autoLink="phone"
+                    android:textColor="@color/colorAccent" />
+            </TableRow>
+            <TableRow  android:background="@color/white"
+                android:padding="5dp"
+                android:layout_marginTop="1dp"
+                android:gravity="center">
+                <TextView android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Медицинский  пункт \n(бассейн)"
+                    android:textColor="@color/black"
+                    android:layout_marginLeft="16dp" />
+                <TextView android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="7-21-52"
+                    android:id="@+id/phone15"
+                    android:gravity="center_horizontal"
+                    android:autoLink="phone"
+                    android:textColor="@color/colorAccent" />
+            </TableRow>
+        </TableLayout>
+    </ScrollView>
+</LinearLayout>
+</layout>

@@ -83,6 +83,32 @@
     </string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="no_internet_connection">Нет подключения к сети</string>
+    <string name="address"><b>Адрес</b> 628263, ХМАО-Югра, \nг. Югорск, ул. Садовая, д.72</string>
+    <string name="e_mail"><b>E-mail</b> sad.svetlyachock@yandex.ru</string>
+    <string name="phone_fax"><b>Телефон, факс</b> 8(34675) 2-66-23</string>
+    <string name="address2"><b>Адрес</b> 628260, ХМАО-Югра, \nг.Югорск, ул. Ермака, 7</string>
+    <string name="e_mail2"><b>E-mail</b> school-62007@yandex.ru</string>
+    <string name="url"><b>Адрес сайта</b> http://школа6югорск.рф</string>
+    <string name="vk"><b>Группа ВКонтакте</b> https://vk.com/club2040244</string>
+    <string name="preschool"><b>Дошкольные группы</b></string>
+    <string name="school"><b>Школа №6</b></string>
+    <string name="Bobrecova">Заместитель директора\n<b>Бобрецова Н.А</b></string>
+    <string name="Minhazetinova">Старший воспитатель\n<b>Минхазетинова О.Р</b></string>
+    <string name="Solopina">Заведующий хозяйством\nгрупп <b>Солопина Р.Х</b></string>
+    <string name="Litovchenko">Специалист по\nохране труда\n<b>Литовченко И.Н</b></string>
+    <string name="Batueva">Старший воспитатель\n<b>Батуева Е.В</b></string>
+    <string name="Komisarenko">Директор школы\n<b>Комисаренко Евгения Борисовна</b></string>
+    <string name="Rybakova">Заместитель директора по УВР\n<b>Рыбакова Елена Николаевна</b></string>
+    <string name="Votinceva">Приёмная\nСпециалист по кадрам \n<b>Вотинцева Елена Георгиевна</b>\nСекретарь\n<b>Харизова Мария Сергеевна</b>\n<b>Шмитд Ирина Юрьевна</b></string>
+    <string name="Bogomolova">Бухгалтерия\n<b>Богомолова Елена Николаевна</b></string>
+    <string name="Filonova">Заместитель директора по \nхозяйственной работе  \n<b>Филонова Татьяна Михайловна</b></string>
+    <string name="Danilova">Заместитель директора по УВР\n<b>Данилова Татьяна Вениаминовна</b>\n<b>Пролеев Алексей Анатольевич</b></string>
+    <string name="Hairulina">Заместитель директора по УВР\n<b>Василенко\nАлександра Александровна</b>\nПедагог-организатор\n<b>Путилина Ольга Петровна</b></string>
+    <string name="Zaiceva">Столовая\n<b>Зайцева Лилия Васильевна</b></string>
+    <string name="Grehova">Вахта\n<b>Грехов Андрей Анатольевич</b></string>
+    <string name="Deshevyh">Социальный педагог\n<b>Дешевых Лариса Андреевна</b></string>
+    <string name="Tadyko">Бассейн Заведующий\n<b>Тадыко Сергей Валентинович</b></string>
+    <string name="Lyashok">Библиотека Заведующая\n<b>Ляшок Светлана Васильевна</b></string>
 
 
 </resources>
