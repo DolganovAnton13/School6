@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+
+    <data>
+        <variable
+            name="event"
+            type="com.yugorsk.school6.view.fragment.FragmentContacts1" />
+    </data>
+
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_contacts"
@@ -98,7 +105,8 @@
                     android:text="7-40-94"
                     android:textColor="@color/colorAccent"
                     android:gravity="center_horizontal"
-                    android:autoLink="phone" />
+                    android:autoLink="phone"
+                    android:onClick="@{event::onPhoneNumberClick}"/>
             </TableRow>
             <TableRow  android:background="@color/white"
                 android:padding="5dp"
@@ -115,7 +123,8 @@
                     android:gravity="center_horizontal"
                     android:id="@+id/phone2"
                     android:textColor="@color/colorAccent"
-                    android:autoLink="phone" />
+                    android:autoLink="phone"
+                    android:onClick="@{event::onPhoneNumberClick}"/>
             </TableRow>
             <TableRow android:background="@color/white"
                 android:padding="5dp"
@@ -134,7 +143,8 @@
                     android:gravity="center_horizontal"
                     android:id="@+id/phone3"
                     android:autoLink="phone"
-                    android:textColor="@color/colorAccent"/>
+                    android:textColor="@color/colorAccent"
+                    android:onClick="@{event::onPhoneNumberClick}"/>
             </TableRow>
             <TableRow  android:background="@color/white"
                 android:padding="5dp"
@@ -151,7 +161,8 @@
                     android:text="7-24-47"
                     android:gravity="center_horizontal"
                     android:textColor="@color/colorAccent"
-                    android:autoLink="phone" />
+                    android:autoLink="phone"
+                    android:onClick="@{event::onPhoneNumberClick}"/>
             </TableRow>
             <TableRow android:background="@color/white"
                 android:padding="5dp"
@@ -168,7 +179,8 @@
                     android:gravity="center_horizontal"
                     android:id="@+id/phone5"
                     android:autoLink="phone"
-                    android:textColor="@color/colorAccent"/>
+                    android:textColor="@color/colorAccent"
+                    android:onClick="@{event::onPhoneNumberClick}"/>
             </TableRow>
             <TableRow  android:background="@color/white"
                 android:padding="5dp"
@@ -185,7 +197,8 @@
                     android:gravity="center_horizontal"
                     android:id="@+id/phone6"
                     android:autoLink="phone"
-                    android:textColor="@color/colorAccent" />
+                    android:textColor="@color/colorAccent"
+                    android:onClick="@{event::onPhoneNumberClick}"/>
             </TableRow>
             <TableRow android:background="@color/white"
                 android:padding="5dp"
@@ -202,7 +215,8 @@
                     android:gravity="center_horizontal"
                     android:id="@+id/phone7"
                     android:autoLink="phone"
-                    android:textColor="@color/colorAccent" />
+                    android:textColor="@color/colorAccent"
+                    android:onClick="@{event::onPhoneNumberClick}"/>
             </TableRow>
             <TableRow android:background="@color/white"
                 android:padding="5dp"
@@ -219,7 +233,8 @@
                     android:id="@+id/phone9"
                     android:gravity="center_horizontal"
                     android:autoLink="phone"
-                    android:textColor="@color/colorAccent"/>
+                    android:textColor="@color/colorAccent"
+                    android:onClick="@{event::onPhoneNumberClick}"/>
             </TableRow>
             <TableRow android:background="@color/white"
                 android:padding="5dp"
@@ -236,7 +251,8 @@
                     android:id="@+id/phone10"
                     android:gravity="center_horizontal"
                     android:autoLink="phone"
-                    android:textColor="@color/colorAccent"/>
+                    android:textColor="@color/colorAccent"
+                    android:onClick="@{event::onPhoneNumberClick}"/>
             </TableRow>
             <TableRow  android:background="@color/white"
                 android:padding="5dp"
@@ -253,7 +269,8 @@
                     android:id="@+id/phone11"
                     android:gravity="center_horizontal"
                     android:autoLink="phone"
-                    android:textColor="@color/colorAccent" />
+                    android:textColor="@color/colorAccent"
+                    android:onClick="@{event::onPhoneNumberClick}"/>
             </TableRow>
             <TableRow android:background="@color/white"
                 android:padding="5dp"
@@ -270,7 +287,8 @@
                     android:id="@+id/phone12"
                     android:gravity="center_horizontal"
                     android:autoLink="phone"
-                    android:textColor="@color/colorAccent"/>
+                    android:textColor="@color/colorAccent"
+                    android:onClick="@{event::onPhoneNumberClick}"/>
             </TableRow>
             <TableRow  android:background="@color/white"
                 android:padding="5dp"
@@ -287,7 +305,8 @@
                     android:id="@+id/phone13"
                     android:gravity="center_horizontal"
                     android:autoLink="phone"
-                    android:textColor="@color/colorAccent" />
+                    android:textColor="@color/colorAccent"
+                    android:onClick="@{event::onPhoneNumberClick}"/>
             </TableRow>
             <TableRow android:background="@color/white"
                 android:padding="5dp"
@@ -304,7 +323,8 @@
                     android:gravity="center_horizontal"
                     android:id="@+id/phone14"
                     android:autoLink="phone"
-                    android:textColor="@color/colorAccent" />
+                    android:textColor="@color/colorAccent"
+                    android:onClick="@{event::onPhoneNumberClick}"/>
             </TableRow>
             <TableRow  android:background="@color/white"
                 android:padding="5dp"
@@ -321,7 +341,8 @@
                     android:id="@+id/phone15"
                     android:gravity="center_horizontal"
                     android:autoLink="phone"
-                    android:textColor="@color/colorAccent" />
+                    android:textColor="@color/colorAccent"
+                    android:onClick="@{event::onPhoneNumberClick}"/>
             </TableRow>
         </TableLayout>
     </ScrollView>

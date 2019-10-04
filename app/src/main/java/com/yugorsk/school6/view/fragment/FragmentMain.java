@@ -10,16 +10,19 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
+import com.google.android.material.navigation.NavigationView;
 import com.yugorsk.school6.CalendarDate;
 import com.yugorsk.school6.network.NetworkState;
 import com.yugorsk.school6.viewmodel.MainViewModel;
@@ -42,6 +45,7 @@ public class FragmentMain extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false);
+        binding.setEvent(this);
         return binding.getRoot();
     }
 
@@ -104,5 +108,20 @@ public class FragmentMain extends Fragment {
         binding.cardLeft1.setAnimation(righttoleft);
         binding.cardLeft2.setAnimation(lefttoright);
         binding.cardRight.setAnimation(downtoup);
+    }
+
+    public void onCardViewClick(View view) {
+        switch (view.getId())
+        {
+            case R.id.cardLeft1:
+                ((MainActivity)getActivity()).replaceFragment(new FragmentCallScheduleMain());
+                break;
+            case R.id.cardLeft2:
+                ((MainActivity)getActivity()).replaceFragment(new FragmentNews());
+                break;
+            case R.id.cardRight:
+                ((MainActivity)getActivity()).replaceFragment(new FragmentSchedule());
+                break;
+        }
     }
 }

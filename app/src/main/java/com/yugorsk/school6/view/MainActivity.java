@@ -20,9 +20,11 @@ import com.google.android.material.navigation.NavigationView;
 
 import com.yugorsk.school6.view.fragment.FragmentAboutSchoolMain;
 import com.yugorsk.school6.view.fragment.FragmentCallScheduleMain;
+import com.yugorsk.school6.view.fragment.FragmentContactsMain;
 import com.yugorsk.school6.view.fragment.FragmentMain;
 import com.yugorsk.school6.R;
 import com.yugorsk.school6.databinding.ActivityMainBinding;
+import com.yugorsk.school6.view.fragment.FragmentNews;
 import com.yugorsk.school6.view.fragment.FragmentSchedule;
 
 
@@ -78,6 +80,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case R.id.Call:
                 selectedFragment=new FragmentCallScheduleMain();
                 break;
+            case R.id.News:
+                selectedFragment=new FragmentNews();
+                break;
+            case R.id.Contacts:
+                selectedFragment=new FragmentContactsMain();
+                break;
             default:
                 selectedFragment = new FragmentMain();
                 break;
@@ -89,6 +97,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
         return true;
+    }
+
+    public void replaceFragment(Fragment fragment)
+    {
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(binding.hostFragment.getId(), fragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 
     public void setToolbar(Toolbar toolbar, String title) {

@@ -6,8 +6,8 @@
 
     <data>
         <variable
-            name="date"
-            type="com.yugorsk.school6.data.Date" />
+            name="event"
+            type="com.yugorsk.school6.view.fragment.FragmentMain" />
     </data>
 
 <androidx.constraintlayout.widget.ConstraintLayout
@@ -88,7 +88,8 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="5dp"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="5dp">
+        android:layout_marginEnd="5dp"
+        android:onClick="@{event::onCardViewClick}">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -140,7 +141,8 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="8dp"
         android:layout_marginStart="5dp"
-        android:layout_marginEnd="8dp">
+        android:layout_marginEnd="8dp"
+        android:onClick="@{event::onCardViewClick}">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -196,7 +198,8 @@
         android:layout_marginLeft="8dp"
         android:layout_marginRight="5dp"
         android:layout_marginStart="8dp"
-        android:layout_marginEnd="5dp">
+        android:layout_marginEnd="5dp"
+        android:onClick="@{event::onCardViewClick}">
 
         <LinearLayout
             android:layout_width="match_parent"

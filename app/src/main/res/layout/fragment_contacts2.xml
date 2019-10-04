@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+
+    <data>
+        <variable
+            name="event"
+            type="com.yugorsk.school6.view.fragment.FragmentContacts2" />
+    </data>
+
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/activity_contacts"
@@ -103,7 +110,8 @@
                         android:id="@+id/phone16"
                         android:text="2-66-23"
                         android:textColor="@color/colorAccent"
-                        android:autoLink="phone" />
+                        android:autoLink="phone"
+                        android:onClick="@{event::onPhoneNumberClick}"/>
                 </TableRow>
                 <TableRow android:background="@color/white"
                     android:padding="5dp"
@@ -123,7 +131,8 @@
                         android:id="@+id/phone17"
                         android:text="2-66-23"
                         android:textColor="@color/colorAccent"
-                        android:autoLink="phone" />
+                        android:autoLink="phone"
+                        android:onClick="@{event::onPhoneNumberClick}"/>
                 </TableRow>
                 <TableRow android:background="@color/white"
                     android:padding="5dp"
@@ -143,7 +152,8 @@
                         android:id="@+id/phone18"
                         android:text="7-20-55"
                         android:textColor="@color/colorAccent"
-                        android:autoLink="phone" />
+                        android:autoLink="phone"
+                        android:onClick="@{event::onPhoneNumberClick}"/>
                 </TableRow>
                 <TableRow android:background="@color/white"
                     android:padding="5dp"
@@ -163,7 +173,8 @@
                         android:id="@+id/phone19"
                         android:text="7-20-55"
                         android:textColor="@color/colorAccent"
-                        android:autoLink="phone" />
+                        android:autoLink="phone"
+                        android:onClick="@{event::onPhoneNumberClick}"/>
                 </TableRow>
                 <TableRow android:background="@color/white"
                     android:padding="5dp"
@@ -183,7 +194,8 @@
                         android:id="@+id/phone20"
                         android:text="2-66-23"
                         android:textColor="@color/colorAccent"
-                        android:autoLink="phone" />
+                        android:autoLink="phone"
+                        android:onClick="@{event::onPhoneNumberClick}"/>
                 </TableRow>
             </TableLayout>
         </ScrollView>
