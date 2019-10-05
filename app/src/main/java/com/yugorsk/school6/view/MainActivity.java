@@ -18,9 +18,11 @@ import android.view.MenuItem;
 
 import com.google.android.material.navigation.NavigationView;
 
+import com.yugorsk.school6.view.fragment.FragmentAboutApp;
 import com.yugorsk.school6.view.fragment.FragmentAboutSchoolMain;
 import com.yugorsk.school6.view.fragment.FragmentCallScheduleMain;
 import com.yugorsk.school6.view.fragment.FragmentContactsMain;
+import com.yugorsk.school6.view.fragment.FragmentLogin;
 import com.yugorsk.school6.view.fragment.FragmentMain;
 import com.yugorsk.school6.R;
 import com.yugorsk.school6.databinding.ActivityMainBinding;
@@ -85,6 +87,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.Contacts:
                 selectedFragment=new FragmentContactsMain();
+                break;
+            case R.id.Admin:
+                selectedFragment=new FragmentLogin();
+                break;
+            case R.id.AboutApp:
+                selectedFragment=new FragmentAboutApp();
                 break;
             default:
                 selectedFragment = new FragmentMain();

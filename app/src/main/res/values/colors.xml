@@ -9,4 +9,5 @@
     <color name="black">#000000</color>
     <color name="divider">#FFECB3</color>
     <color name="list">#EEEEEE</color>
+    <color name="darkGrey">#9E9E9E</color>
 </resources>
