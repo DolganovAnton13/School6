@@ -17,13 +17,7 @@ import java.util.List;
 public interface LoginDao {
 
     @Query("SELECT * FROM Login")
-    LiveData<List<Login>> getAllLogin();
-
-    @Query("SELECT * FROM Login WHERE id = :id")
-    LiveData<Login> getLoginById(String id);
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(List<Login> logins);
+    LiveData<List<Login>> getLogin();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Login login);
@@ -33,4 +27,7 @@ public interface LoginDao {
 
     @Delete
     void delete(Login login);
+
+    @Query("DELETE FROM Login")
+    void deleteAll();
 }

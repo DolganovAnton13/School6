@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
 
+    <data>
+        <variable
+            name="event"
+            type="com.yugorsk.school6.view.fragment.FragmentLogin" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -84,7 +90,8 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textPassword" />
+            app:layout_constraintTop_toBottomOf="@+id/textPassword"
+            android:onClick="@{event::onButtonLoginClick}"/>
 
         <ProgressBar
             android:id="@+id/progressBarLogin"

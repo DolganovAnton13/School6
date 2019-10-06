@@ -17,6 +17,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.yugorsk.school6.data.Call;
 import com.yugorsk.school6.data.Date;
+import com.yugorsk.school6.data.Login;
 import com.yugorsk.school6.network.FirebaseQueryLiveData;
 
 import java.io.File;
@@ -27,6 +28,7 @@ public class DataRepository {
 
     private static final DatabaseReference Date_REF = FirebaseDatabase.getInstance().getReference().child("Даты");
     private static final DatabaseReference Call_REF = FirebaseDatabase.getInstance().getReference().child("Звонки");
+    private static final DatabaseReference Login_REF = FirebaseDatabase.getInstance().getReference().child("Администрирование");
 
     MutableLiveData<StorageReference> storageLiveData;
 
@@ -46,6 +48,13 @@ public class DataRepository {
         FirebaseQueryLiveData liveData = new FirebaseQueryLiveData(Call_REF);
         LiveData<Call> callLiveData = Transformations.map(liveData, new DataSnapshotCall());
         return callLiveData;
+    }
+
+    @NonNull
+    public LiveData<List<Login>> getLoginLiveData() {
+        FirebaseQueryLiveData liveData = new FirebaseQueryLiveData(Login_REF);
+        LiveData<List<Login>> loginLiveData = Transformations.map(liveData, new DataSnapshotLogin());
+        return loginLiveData;
     }
 
     public LiveData<StorageReference> getScheduleLiveData(int id) {
@@ -156,6 +165,18 @@ public class DataRepository {
                 }
             }
             return call;
+        }
+    }
+
+    private class DataSnapshotLogin implements Function<DataSnapshot, List<Login>> {
+        @Override
+        public List<Login> apply(DataSnapshot dataSnapshot) {
+            List<Login> listLogin = new ArrayList<>();
+
+            for (DataSnapshot dsp : dataSnapshot.getChildren()) {
+                listLogin.add(new Login(dsp.getKey(),dsp.getValue().toString(),1));
+            }
+            return listLogin;
         }
     }
 }

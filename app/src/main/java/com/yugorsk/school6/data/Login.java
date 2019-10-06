@@ -7,9 +7,8 @@ import androidx.room.PrimaryKey;
 @Entity
 public class Login {
 
-    @NonNull
-    @PrimaryKey
-    private String id;
+    @PrimaryKey(autoGenerate = true)
+    private long id;
 
     private String login;
     private String password;
@@ -21,12 +20,13 @@ public class Login {
         this.admin = admin;
     }
 
-    @NonNull
-    public String getId() {
+    public Login(){}
+
+    public long getId() {
         return id;
     }
 
-    public void setId(@NonNull String id) {
+    public void setId(long id) {
         this.id = id;
     }
 

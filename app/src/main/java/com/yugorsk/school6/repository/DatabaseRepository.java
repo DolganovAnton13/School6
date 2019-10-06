@@ -33,7 +33,7 @@ public class DatabaseRepository {
 
     public LiveData<Date> getDate() {return dateDao.getAllDate();}
 
-    public LiveData<List<Login>> getLogin() {return loginDao.getAllLogin();}
+    public LiveData<List<Login>> getLogin() {return loginDao.getLogin();}
 
     public LiveData<List<News>> getNews() {return newsDao.getAllNews();}
 
@@ -58,6 +58,18 @@ public class DatabaseRepository {
             public void run() throws Exception {
                 scheduleDao.deleteAll();
                 scheduleDao.insert(schedule);
+            }
+        }).subscribeOn(Schedulers.io())
+                .subscribe();
+    }
+
+    public void insertLogin(final Login login)
+    {
+        Completable.fromAction(new Action() {
+            @Override
+            public void run() throws Exception {
+                loginDao.deleteAll();
+                loginDao.insert(login);
             }
         }).subscribeOn(Schedulers.io())
                 .subscribe();

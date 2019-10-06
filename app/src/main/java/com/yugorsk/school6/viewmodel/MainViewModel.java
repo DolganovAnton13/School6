@@ -55,6 +55,10 @@ public class MainViewModel extends ViewModel {
         database.insertDate(dates);
     }
 
+    public void insertLogin(Login login) {
+        database.insertLogin(login);
+    }
+
     public LiveData<Date> getDateFromServer() {
         return data.getDateLiveData();
     }
@@ -66,5 +70,9 @@ public class MainViewModel extends ViewModel {
 
     public LiveData<Call> getCallFromServer() {
         return data.getCallLiveData();
+    }
+
+    public LiveData<List<Login>> getLoginFromServer() {
+        return data.getLoginLiveData();
     }
 }
