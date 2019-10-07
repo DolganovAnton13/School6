@@ -1,5 +1,6 @@
 package com.yugorsk.school6.viewmodel;
 
+import android.net.Uri;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
@@ -35,7 +36,7 @@ public class MainViewModel extends ViewModel {
         return database.getDate();
     }
 
-    public LiveData<List<Login>> getLogin() {
+    public LiveData<Login> getLogin() {
         return database.getLogin();
     }
 
@@ -75,4 +76,11 @@ public class MainViewModel extends ViewModel {
     public LiveData<List<Login>> getLoginFromServer() {
         return data.getLoginLiveData();
     }
+
+    public void deleteLogin()
+    {
+        database.deleteLogin();
+    }
+
+    public void LoadPicture(Uri filePath,String number){data.LoadPicture(filePath,number);}
 }

@@ -23,7 +23,9 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 import com.yugorsk.school6.CalendarDate;
+import com.yugorsk.school6.data.Login;
 import com.yugorsk.school6.network.NetworkState;
 import com.yugorsk.school6.viewmodel.MainViewModel;
 import com.yugorsk.school6.R;
@@ -61,6 +63,7 @@ public class FragmentMain extends Fragment {
             getDateFromServer();
         }
         showDate();
+        getLoginForCheck();
     }
 
     @Override
@@ -96,6 +99,30 @@ public class FragmentMain extends Fragment {
                 binding.newTextForDate.setText(R.string.app_name);
             }
         });
+    }
+
+    private void getLoginForCheck()
+    {
+        model.getLogin().observe(getViewLifecycleOwner(),login ->{
+            if(login!=null) {
+                CheckLogin(login.getLogin(), login.getPassword());
+            }
+        });
+    }
+
+    private void CheckLogin(String login, String password) {
+        NetworkState networkState = new NetworkState(getActivity());
+        if (networkState.isOnline()) {
+            model.getLoginFromServer().observe(getViewLifecycleOwner(),listLogin -> {
+                for (Login buf: listLogin) {
+                    if (buf.getLogin().equals(login) && buf.getPassword().equals(password)){
+
+                        FragmentLogin.admin = true;
+                        ((MainActivity)getActivity()).navigationView.getMenu().getItem(6).setTitle("Администрирование - выйти");
+                    }
+                }
+            });
+        }
     }
 
     private void loadAnimation() {

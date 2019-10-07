@@ -9,6 +9,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,6 +51,10 @@ public class FragmentLogin extends Fragment {
         ((MainActivity) getActivity()).setToolbar(binding.toolbarLogin, "Администрирование");
         ((MainActivity) getActivity()).navigationView.getMenu().getItem(6).setChecked(true);
         if(admin) ((MainActivity)getActivity()).navigationView.getMenu().getItem(6).setTitle("Администрирование");
+        if(admin) {
+            model.deleteLogin();
+            admin=false;
+        }
     }
 
     @Override
@@ -65,11 +70,11 @@ public class FragmentLogin extends Fragment {
         if (textLogin.isEmpty() || textPassword.isEmpty()) {
             Snackbar.make(binding.buttonLogin, getResources().getString(R.string.emptyField), Snackbar.LENGTH_LONG).show();
         } else {
-            CheckData(textLogin,textPassword);
+            CheckLogin(textLogin,textPassword);
         }
     }
 
-    private void CheckData(String login, String password) {
+    private void CheckLogin(String login, String password) {
         NetworkState networkState = new NetworkState(getActivity());
         if (networkState.isOnline()) {
             model.getLoginFromServer().observe(getViewLifecycleOwner(),listLogin -> {
@@ -79,7 +84,7 @@ public class FragmentLogin extends Fragment {
                         binding.buttonLogin.setVisibility(View.INVISIBLE);
                         admin = true;
                         ((MainActivity)getActivity()).navigationView.getMenu().getItem(6).setTitle("Администрирование - выйти");
-                        //insertbd
+                        model.insertLogin(buf);
                         ((MainActivity)getActivity()).replaceFragment(new FragmentMain());
                     }
                 }

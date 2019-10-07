@@ -12,12 +12,10 @@ public class Login {
 
     private String login;
     private String password;
-    private int admin;
 
-    public Login(String login, String password, int admin) {
+    public Login(String login, String password) {
         this.login = login;
         this.password = password;
-        this.admin = admin;
     }
 
     public Login(){}
@@ -44,13 +42,5 @@ public class Login {
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public int getAdmin() {
-        return admin;
-    }
-
-    public void setAdmin(int admin) {
-        this.admin = admin;
     }
 }

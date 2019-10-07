@@ -17,7 +17,7 @@ import java.util.List;
 public interface LoginDao {
 
     @Query("SELECT * FROM Login")
-    LiveData<List<Login>> getLogin();
+    LiveData<Login> getLogin();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insert(Login login);

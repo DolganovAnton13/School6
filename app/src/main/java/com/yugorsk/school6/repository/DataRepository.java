@@ -3,6 +3,7 @@ package com.yugorsk.school6.repository;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.net.Uri;
 
 import androidx.annotation.NonNull;
 import androidx.arch.core.util.Function;
@@ -23,6 +24,10 @@ import com.yugorsk.school6.network.FirebaseQueryLiveData;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+
+import io.reactivex.Completable;
+import io.reactivex.functions.Action;
+import io.reactivex.schedulers.Schedulers;
 
 public class DataRepository {
 
@@ -174,9 +179,21 @@ public class DataRepository {
             List<Login> listLogin = new ArrayList<>();
 
             for (DataSnapshot dsp : dataSnapshot.getChildren()) {
-                listLogin.add(new Login(dsp.getKey(),dsp.getValue().toString(),1));
+                listLogin.add(new Login(dsp.getKey(), dsp.getValue().toString()));
             }
             return listLogin;
         }
+    }
+
+    public void LoadPicture(Uri filePath, String number) {
+        Completable.fromAction(new Action() {
+            @Override
+            public void run() throws Exception {
+                StorageReference ref = FirebaseStorage.getInstance().getReference().child("расписание уроков/" + number);
+                ref.putFile(filePath);
+            }
+        }).subscribeOn(Schedulers.io())
+                .subscribe();
+
     }
 }

@@ -1,7 +1,10 @@
 package com.yugorsk.school6.view.fragment;
 
 
+import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -11,6 +14,7 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -44,19 +48,27 @@ public class FragmentSchedule extends Fragment {
 
     private MainViewModel model;
     private FragmentScheduleBinding binding;
-    String[] numberClass = {"1 класс", "2 класс", "3 класс", "4 класс", "5-11 класс"};
+    private String[] schoolClass = {"1 класс", "2 класс", "3 класс", "4 класс", "5-11 класс"};
+    String[] numberClass = {"1.jpg", "2.jpg", "3.jpg", "4.jpg", "11.jpg"};
     private final int totalProgressTime = 5;
+    private final int PICK_IMAGE_REQUEST = 71;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_schedule, container, false);
+        binding.setEvent(this);
         return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         model = ViewModelProviders.of(getActivity()).get(MainViewModel.class);
+
+        if (!FragmentLogin.admin) {
+            binding.floatingButtonSchedule.hide();
+        }
+
         setSpinner();
     }
 
@@ -73,9 +85,9 @@ public class FragmentSchedule extends Fragment {
         super.onDestroyView();
     }
 
-   @Override
+    @Override
     public void onPause() {
-        model.insertIndexSchedule(new Schedule((int)binding.spinnerSchedule.getSelectedItemId()));
+        model.insertIndexSchedule(new Schedule((int) binding.spinnerSchedule.getSelectedItemId()));
         super.onPause();
     }
 
@@ -90,7 +102,7 @@ public class FragmentSchedule extends Fragment {
     }
 
     private void setSpinner() {
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, numberClass);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_spinner_item, schoolClass);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.spinnerSchedule.setAdapter(adapter);
 
@@ -98,10 +110,9 @@ public class FragmentSchedule extends Fragment {
         AdapterView.OnItemSelectedListener itemSelectedListener = new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
                 NetworkState networkState = new NetworkState(getActivity());
                 if (networkState.isOnline()) {
-                    getSchedule((int)id);
+                    getSchedule((int) id);
                 } else {
                     Snackbar.make(binding.spinnerSchedule, getResources().getString(R.string.no_internet_connection), Snackbar.LENGTH_LONG).show();
                 }
@@ -166,4 +177,44 @@ public class FragmentSchedule extends Fragment {
             }
         }).start();
     }
+
+    public void onFABClick(View view) {
+        NetworkState networkState = new NetworkState(getActivity());
+        if (networkState.isOnline()) {
+            ChooseImage();
+        } else {
+            Snackbar.make(binding.spinnerSchedule, getResources().getString(R.string.no_internet_connection), Snackbar.LENGTH_LONG).show();
+        }
+    }
+
+    private void ChooseImage() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK && data != null && data.getData() != null) {
+            Uri filePath = data.getData();
+            UploadImage(filePath);
+
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), filePath);
+                binding.imageshedule.setImageBitmap(bitmap);
+            } catch (IOException e) {
+                Snackbar.make(binding.spinnerSchedule, "Упс, что-то пошло не так", Snackbar.LENGTH_LONG).show();
+            }
+        }
+    }
+
+    private void UploadImage(Uri filePath) {
+        if (filePath != null) {
+            model.LoadPicture(filePath, numberClass[binding.spinnerSchedule.getSelectedItemPosition()]);
+        }
+    }
+
 }
