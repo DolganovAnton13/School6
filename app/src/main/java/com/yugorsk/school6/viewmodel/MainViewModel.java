@@ -1,15 +1,15 @@
 package com.yugorsk.school6.viewmodel;
 
 import android.net.Uri;
-import android.util.Log;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
-import androidx.room.Database;
 
 
 import com.google.firebase.storage.StorageReference;
 import com.yugorsk.school6.App;
+import com.yugorsk.school6.callback.ProgressDialogCallback;
+import com.yugorsk.school6.callback.SnackbarCallback;
 import com.yugorsk.school6.data.Call;
 import com.yugorsk.school6.data.Date;
 import com.yugorsk.school6.data.Login;
@@ -19,8 +19,6 @@ import com.yugorsk.school6.repository.DataRepository;
 import com.yugorsk.school6.repository.DatabaseRepository;
 
 import java.util.List;
-import java.util.Observable;
-import java.util.Observer;
 
 public class MainViewModel extends ViewModel {
 
@@ -82,5 +80,6 @@ public class MainViewModel extends ViewModel {
         database.deleteLogin();
     }
 
-    public void LoadPicture(Uri filePath,String number){data.LoadPicture(filePath,number);}
+    public void LoadPicture(Uri filePath, String number, ProgressDialogCallback callback, SnackbarCallback snackbarCallback){
+        data.LoadPicture(filePath,number,callback,snackbarCallback);}
 }

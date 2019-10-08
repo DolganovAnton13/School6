@@ -9,11 +9,9 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.yugorsk.school6.R;
@@ -48,7 +46,7 @@ public class FragmentLogin extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        ((MainActivity) getActivity()).setToolbar(binding.toolbarLogin, "Администрирование");
+        ((MainActivity) getActivity()).setToolbarWithDrawerLayout(binding.toolbarLogin, "Администрирование");
         ((MainActivity) getActivity()).navigationView.getMenu().getItem(6).setChecked(true);
         if(admin) ((MainActivity)getActivity()).navigationView.getMenu().getItem(6).setTitle("Администрирование");
         if(admin) {
@@ -59,7 +57,7 @@ public class FragmentLogin extends Fragment {
 
     @Override
     public void onDestroyView() {
-        ((MainActivity) getActivity()).setToolbar(null, "");
+        ((MainActivity) getActivity()).setToolbarWithDrawerLayout(null, "");
         super.onDestroyView();
     }
 

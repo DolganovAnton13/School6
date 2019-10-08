@@ -15,20 +15,20 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.provider.MediaStore;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.storage.FileDownloadTask;
 import com.squareup.picasso.Picasso;
+import com.yugorsk.school6.callback.ProgressDialogCallback;
 import com.yugorsk.school6.R;
+import com.yugorsk.school6.callback.SnackbarCallback;
 import com.yugorsk.school6.data.Schedule;
 import com.yugorsk.school6.databinding.FragmentScheduleBinding;
 import com.yugorsk.school6.network.NetworkState;
@@ -44,7 +44,7 @@ import uk.co.senab.photoview.PhotoViewAttacher;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentSchedule extends Fragment {
+public class FragmentSchedule extends Fragment implements ProgressDialogCallback, SnackbarCallback {
 
     private MainViewModel model;
     private FragmentScheduleBinding binding;
@@ -52,6 +52,7 @@ public class FragmentSchedule extends Fragment {
     String[] numberClass = {"1.jpg", "2.jpg", "3.jpg", "4.jpg", "11.jpg"};
     private final int totalProgressTime = 5;
     private final int PICK_IMAGE_REQUEST = 71;
+    ProgressDialog progressDialog;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -65,6 +66,7 @@ public class FragmentSchedule extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         model = ViewModelProviders.of(getActivity()).get(MainViewModel.class);
 
+        progressDialog = new ProgressDialog(getContext());
         if (!FragmentLogin.admin) {
             binding.floatingButtonSchedule.hide();
         }
@@ -75,13 +77,13 @@ public class FragmentSchedule extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        ((MainActivity) getActivity()).setToolbar(binding.toolbarSchedule, "Расписание уроков");
+        ((MainActivity) getActivity()).setToolbarWithDrawerLayout(binding.toolbarSchedule, "Расписание уроков");
         ((MainActivity) getActivity()).navigationView.getMenu().getItem(2).setChecked(true);
     }
 
     @Override
     public void onDestroyView() {
-        ((MainActivity) getActivity()).setToolbar(null, "");
+        ((MainActivity) getActivity()).setToolbarWithDrawerLayout(null, "");
         super.onDestroyView();
     }
 
@@ -213,8 +215,28 @@ public class FragmentSchedule extends Fragment {
 
     private void UploadImage(Uri filePath) {
         if (filePath != null) {
-            model.LoadPicture(filePath, numberClass[binding.spinnerSchedule.getSelectedItemPosition()]);
+            model.LoadPicture(filePath, numberClass[binding.spinnerSchedule.getSelectedItemPosition()], this,this);
         }
     }
 
+    @Override
+    public void ProgressDialogSetMessage(String message) {
+        progressDialog.setMessage(message);
+    }
+
+    @Override
+    public void ProgressDialogShow() {
+        progressDialog.setTitle("Загрузка...");
+        progressDialog.show();
+    }
+
+    @Override
+    public void ProgressDialogDissmiss() {
+        progressDialog.dismiss();
+    }
+
+    @Override
+    public void SnackbarShow(String text) {
+        Snackbar.make(binding.spinnerSchedule, text, Snackbar.LENGTH_LONG).show();
+    }
 }

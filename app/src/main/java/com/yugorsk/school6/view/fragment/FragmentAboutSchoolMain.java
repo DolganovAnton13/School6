@@ -41,7 +41,7 @@ public class FragmentAboutSchoolMain extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        ((MainActivity)getActivity()).setToolbar(binding.toolbarAboutSchool,"");
+        ((MainActivity)getActivity()).setToolbarWithDrawerLayout(binding.toolbarAboutSchool,"");
         ((MainActivity)getActivity()).navigationView.getMenu().getItem(1).setChecked(true);
 
         setSpinner();
@@ -49,7 +49,7 @@ public class FragmentAboutSchoolMain extends Fragment {
 
     @Override
     public void onDestroyView() {
-        ((MainActivity)getActivity()).setToolbar(null,"");
+        ((MainActivity)getActivity()).setToolbarWithDrawerLayout(null,"");
         super.onDestroyView();
     }
 

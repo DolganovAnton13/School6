@@ -15,7 +15,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.yugorsk.school6.R;
-import com.yugorsk.school6.adapter.ViewPagerAdapterCallSchedule;
 import com.yugorsk.school6.adapter.ViewPagerAdapterContacts;
 import com.yugorsk.school6.databinding.FragmentContactsBinding;
 import com.yugorsk.school6.view.MainActivity;
@@ -46,13 +45,13 @@ public class FragmentContactsMain extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        ((MainActivity) getActivity()).setToolbar(binding.toolbarContacts, "Контакты");
+        ((MainActivity) getActivity()).setToolbarWithDrawerLayout(binding.toolbarContacts, "Контакты");
         ((MainActivity) getActivity()).navigationView.getMenu().getItem(5).setChecked(true);
     }
 
     @Override
     public void onDestroyView() {
-        ((MainActivity) getActivity()).setToolbar(null, "");
+        ((MainActivity) getActivity()).setToolbarWithDrawerLayout(null, "");
         super.onDestroyView();
     }
 

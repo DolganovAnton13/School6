@@ -1,7 +1,7 @@
 package com.yugorsk.school6.adapter;
 
 import android.content.Context;
-import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,7 +11,8 @@ import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.yugorsk.school6.R;
-import com.yugorsk.school6.view.ShowPhoto;
+import com.yugorsk.school6.view.MainActivity;
+import com.yugorsk.school6.view.fragment.FragmentShowPhoto;
 
 public class ViewPagerAdapterAboutSchool extends PagerAdapter {
 
@@ -68,30 +69,12 @@ public class ViewPagerAdapterAboutSchool extends PagerAdapter {
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (number == 1) {
-                    Intent intent0 = new Intent(context, ShowPhoto.class);
-                    intent0.putExtra("fragment", 1);
-                    intent0.putExtra("position", position);
-                    context.startActivity(intent0);
-                }
-                if (number == 2) {
-                    Intent intent0 = new Intent(context, ShowPhoto.class);
-                    intent0.putExtra("fragment", 2);
-                    intent0.putExtra("position", position);
-                    context.startActivity(intent0);
-                }
-                if (number == 3) {
-                    Intent intent0 = new Intent(context, ShowPhoto.class);
-                    intent0.putExtra("fragment", 3);
-                    intent0.putExtra("position", position);
-                    context.startActivity(intent0);
-                }
-                if (number == 4) {
-                    Intent intent0 = new Intent(context, ShowPhoto.class);
-                    intent0.putExtra("fragment", 4);
-                    intent0.putExtra("position", position);
-                    context.startActivity(intent0);
-                }
+                FragmentShowPhoto fragmentShowPhoto = new FragmentShowPhoto();
+                Bundle bundle = new Bundle();
+                bundle.putInt("fragment", number);
+                bundle.putInt("position", position);
+                fragmentShowPhoto.setArguments(bundle);
+                ((MainActivity) context).replaceFragment(fragmentShowPhoto);
             }
         });
         ViewPager vp = (ViewPager) container;

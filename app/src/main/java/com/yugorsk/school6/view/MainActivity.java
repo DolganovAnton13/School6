@@ -32,7 +32,6 @@ import com.yugorsk.school6.view.fragment.FragmentSchedule;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
-    NavController navController;
     ActivityMainBinding binding;
     public NavigationView navigationView;
 
@@ -42,28 +41,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         setContentView(R.layout.activity_main);
 
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-
         navigationView = findViewById(R.id.navigationView);
-        //navController = Navigation.findNavController(this, R.id.hostFragment);
-
-        //NavigationUI.setupWithNavController(navigationView, navController);
-
         navigationView.setNavigationItemSelectedListener(this);
-        if(savedInstanceState==null) {
+        if (savedInstanceState == null) {
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.replace(binding.hostFragment.getId(), new FragmentMain());
             fragmentTransaction.commit();
         }
     }
 
-
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         Fragment selectedFragment = null;
         menuItem.setChecked(true);
-
         binding.drawerLayout.closeDrawers();
-
         int id = menuItem.getItemId();
 
         switch (id) {
@@ -77,22 +68,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 selectedFragment = new FragmentAboutSchoolMain();
                 break;
             case R.id.Schedule:
-                selectedFragment=new FragmentSchedule();
+                selectedFragment = new FragmentSchedule();
                 break;
             case R.id.Call:
-                selectedFragment=new FragmentCallScheduleMain();
+                selectedFragment = new FragmentCallScheduleMain();
                 break;
             case R.id.News:
-                selectedFragment=new FragmentNews();
+                selectedFragment = new FragmentNews();
                 break;
             case R.id.Contacts:
-                selectedFragment=new FragmentContactsMain();
+                selectedFragment = new FragmentContactsMain();
                 break;
             case R.id.Admin:
-                selectedFragment=new FragmentLogin();
+                selectedFragment = new FragmentLogin();
                 break;
             case R.id.AboutApp:
-                selectedFragment=new FragmentAboutApp();
+                selectedFragment = new FragmentAboutApp();
                 break;
             default:
                 selectedFragment = new FragmentMain();
@@ -107,15 +98,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
-    public void replaceFragment(Fragment fragment)
-    {
+    public void replaceFragment(Fragment fragment) {
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(binding.hostFragment.getId(), fragment);
         fragmentTransaction.addToBackStack(null);
         fragmentTransaction.commit();
     }
 
-    public void setToolbar(Toolbar toolbar, String title) {
+    public void setToolbarWithDrawerLayout(Toolbar toolbar, String title) {
         if (toolbar != null) {
             toolbar.setTitle(title);
             setSupportActionBar(toolbar);
@@ -126,6 +116,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             toggle.syncState();
         } else {
             binding.drawerLayout.setDrawerListener(null);
+        }
+    }
+
+    public void setToolbarWithButtonHome(Toolbar toolbar, String title) {
+        if (toolbar != null) {
+            toolbar.setTitle(title);
+            setSupportActionBar(toolbar);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
     }
 
@@ -145,4 +144,22 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    protected void onStart() {
+        if(FragmentLogin.admin)
+            navigationView.getMenu().getItem(6).setTitle("Администрирование - выйти");
+        super.onStart();
+    }
 }

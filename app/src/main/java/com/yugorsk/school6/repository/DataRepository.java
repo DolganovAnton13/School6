@@ -1,8 +1,5 @@
 package com.yugorsk.school6.repository;
 
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.net.Uri;
 
 import androidx.annotation.NonNull;
@@ -11,23 +8,24 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+import com.yugorsk.school6.callback.ProgressDialogCallback;
+import com.yugorsk.school6.callback.SnackbarCallback;
 import com.yugorsk.school6.data.Call;
 import com.yugorsk.school6.data.Date;
 import com.yugorsk.school6.data.Login;
 import com.yugorsk.school6.network.FirebaseQueryLiveData;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
-import io.reactivex.Completable;
-import io.reactivex.functions.Action;
-import io.reactivex.schedulers.Schedulers;
 
 public class DataRepository {
 
@@ -185,15 +183,32 @@ public class DataRepository {
         }
     }
 
-    public void LoadPicture(Uri filePath, String number) {
-        Completable.fromAction(new Action() {
-            @Override
-            public void run() throws Exception {
-                StorageReference ref = FirebaseStorage.getInstance().getReference().child("расписание уроков/" + number);
-                ref.putFile(filePath);
-            }
-        }).subscribeOn(Schedulers.io())
-                .subscribe();
+    public void LoadPicture(Uri filePath, String number, ProgressDialogCallback progressCallback, SnackbarCallback snackbarCallback) {
+
+        progressCallback.ProgressDialogShow();
+        StorageReference ref = FirebaseStorage.getInstance().getReference().child("расписание уроков/" + number);
+        ref.putFile(filePath)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        progressCallback.ProgressDialogDissmiss();
+                        snackbarCallback.SnackbarShow("Загружено");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        progressCallback.ProgressDialogDissmiss();
+                        snackbarCallback.SnackbarShow("Ошибка загрузки");
+                    }
+                })
+                .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onProgress(UploadTask.TaskSnapshot taskSnapshot) {
+                        double progress = (100.0 * taskSnapshot.getBytesTransferred() / taskSnapshot.getTotalByteCount());
+                        progressCallback.ProgressDialogSetMessage("Загрузка " + (int) progress + "%");
+                    }
+                });
 
     }
 }

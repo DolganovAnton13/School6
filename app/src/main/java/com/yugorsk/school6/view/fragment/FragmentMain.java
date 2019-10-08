@@ -1,29 +1,21 @@
 package com.yugorsk.school6.view.fragment;
 
 
-import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProviders;
 
-import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 
-import com.google.android.material.navigation.NavigationView;
-import com.google.android.material.snackbar.Snackbar;
 import com.yugorsk.school6.CalendarDate;
 import com.yugorsk.school6.data.Login;
 import com.yugorsk.school6.network.NetworkState;
@@ -69,13 +61,13 @@ public class FragmentMain extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        ((MainActivity)getActivity()).setToolbar(binding.toolbarMain,"Главная");
+        ((MainActivity)getActivity()).setToolbarWithDrawerLayout(binding.toolbarMain,"Главная");
         ((MainActivity)getActivity()).navigationView.getMenu().getItem(0).setChecked(true);
     }
 
     @Override
     public void onDestroyView() {
-        ((MainActivity)getActivity()).setToolbar(null,"");
+        ((MainActivity)getActivity()).setToolbarWithDrawerLayout(null,"");
         super.onDestroyView();
     }
 
@@ -116,7 +108,6 @@ public class FragmentMain extends Fragment {
             model.getLoginFromServer().observe(getViewLifecycleOwner(),listLogin -> {
                 for (Login buf: listLogin) {
                     if (buf.getLogin().equals(login) && buf.getPassword().equals(password)){
-
                         FragmentLogin.admin = true;
                         ((MainActivity)getActivity()).navigationView.getMenu().getItem(6).setTitle("Администрирование - выйти");
                     }

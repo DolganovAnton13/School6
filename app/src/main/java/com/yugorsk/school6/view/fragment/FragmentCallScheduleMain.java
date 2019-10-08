@@ -9,7 +9,6 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.PagerAdapter;
-import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -55,13 +54,13 @@ public class FragmentCallScheduleMain extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        ((MainActivity) getActivity()).setToolbar(binding.toolbarCallSchedule, "Расписание звонков");
+        ((MainActivity) getActivity()).setToolbarWithDrawerLayout(binding.toolbarCallSchedule, "Расписание звонков");
         ((MainActivity) getActivity()).navigationView.getMenu().getItem(3).setChecked(true);
     }
 
     @Override
     public void onDestroyView() {
-        ((MainActivity) getActivity()).setToolbar(null, "");
+        ((MainActivity) getActivity()).setToolbarWithDrawerLayout(null, "");
         super.onDestroyView();
     }
 }
