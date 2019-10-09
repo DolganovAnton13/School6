@@ -62,8 +62,7 @@ public class MainViewModel extends ViewModel {
         return data.getDateLiveData();
     }
 
-    public LiveData<StorageReference> getScheduleFromServer(int id)
-    {
+    public LiveData<StorageReference> getScheduleFromServer(int id) {
         return data.getScheduleLiveData(id);
     }
 
@@ -75,11 +74,26 @@ public class MainViewModel extends ViewModel {
         return data.getLoginLiveData();
     }
 
-    public void deleteLogin()
-    {
+    public void deleteLogin() {
         database.deleteLogin();
     }
 
-    public void LoadPicture(Uri filePath, String number, ProgressDialogCallback callback, SnackbarCallback snackbarCallback){
-        data.LoadPicture(filePath,number,callback,snackbarCallback);}
+    public void LoadPicture(Uri filePath, String number, ProgressDialogCallback callback, SnackbarCallback snackbarCallback) {
+        data.LoadPicture(filePath, number, callback, snackbarCallback);
+    }
+
+    public LiveData<List<News>> getNewsFromServer() {
+        return data.getNewsLiveData();
+    }
+
+    public void insertNews(List<News> news) {
+        database.insertNews(news);
+    }
+
+    public void insertNews(News news) {
+        database.insertNews(news);
+    }
+    public void deleteNews(News news) {
+        database.deleteNews(news);
+    }
 }

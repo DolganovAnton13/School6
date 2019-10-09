@@ -12,7 +12,7 @@ import com.yugorsk.school6.db.dao.LoginDao;
 import com.yugorsk.school6.db.dao.NewsDao;
 import com.yugorsk.school6.db.dao.ScheduleDao;
 
-@Database(entities = {Date.class, Login.class, News.class, Schedule.class},version = 4)
+@Database(entities = {Date.class, Login.class, News.class, Schedule.class},version = 5)
 public abstract class AppDatabase extends RoomDatabase {
 
     public abstract DateDao dateDao();

@@ -22,9 +22,12 @@ import com.yugorsk.school6.callback.SnackbarCallback;
 import com.yugorsk.school6.data.Call;
 import com.yugorsk.school6.data.Date;
 import com.yugorsk.school6.data.Login;
+import com.yugorsk.school6.data.News;
 import com.yugorsk.school6.network.FirebaseQueryLiveData;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class DataRepository {
@@ -32,6 +35,7 @@ public class DataRepository {
     private static final DatabaseReference Date_REF = FirebaseDatabase.getInstance().getReference().child("Даты");
     private static final DatabaseReference Call_REF = FirebaseDatabase.getInstance().getReference().child("Звонки");
     private static final DatabaseReference Login_REF = FirebaseDatabase.getInstance().getReference().child("Администрирование");
+    private static final DatabaseReference News_REF = FirebaseDatabase.getInstance().getReference().child("Новости");
 
     MutableLiveData<StorageReference> storageLiveData;
 
@@ -58,6 +62,13 @@ public class DataRepository {
         FirebaseQueryLiveData liveData = new FirebaseQueryLiveData(Login_REF);
         LiveData<List<Login>> loginLiveData = Transformations.map(liveData, new DataSnapshotLogin());
         return loginLiveData;
+    }
+
+    @NonNull
+    public LiveData<List<News>> getNewsLiveData() {
+        FirebaseQueryLiveData liveData = new FirebaseQueryLiveData(News_REF);
+        LiveData<List<News>> newsLiveData = Transformations.map(liveData, new DataSnapshotNews());
+        return newsLiveData;
     }
 
     public LiveData<StorageReference> getScheduleLiveData(int id) {
@@ -180,6 +191,18 @@ public class DataRepository {
                 listLogin.add(new Login(dsp.getKey(), dsp.getValue().toString()));
             }
             return listLogin;
+        }
+    }
+
+    private class DataSnapshotNews implements Function<DataSnapshot, List<News>> {
+        @Override
+        public List<News> apply(DataSnapshot dataSnapshot) {
+            List<News> listNews = new ArrayList<>();
+            DateFormat df = new java.text.SimpleDateFormat("HH:mm dd MMM yyyy");
+            for (DataSnapshot dsp : dataSnapshot.getChildren()) {
+                listNews.add(new News(dsp.getValue().toString(),df.format(Calendar.getInstance().getTime()),""));
+            }
+            return listNews;
         }
     }
 
