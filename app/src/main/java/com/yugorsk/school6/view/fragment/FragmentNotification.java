@@ -13,8 +13,10 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.yugorsk.school6.R;
 import com.yugorsk.school6.databinding.FragmentNotificationBinding;
+import com.yugorsk.school6.network.NetworkState;
 import com.yugorsk.school6.view.MainActivity;
 
 /**
@@ -28,7 +30,6 @@ public class FragmentNotification extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_notification, container, false);
-        setWebView();
         return binding.getRoot();
     }
 
@@ -36,6 +37,12 @@ public class FragmentNotification extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         ((MainActivity) getActivity()).setToolbarWithButtonHome(binding.toolbarNotification, "Отправить уведомление");
+        NetworkState networkState = new NetworkState(getActivity());
+        if (networkState.isOnline()) {
+            setWebView();
+        } else {
+            Snackbar.make(binding.toolbarNotification, getResources().getString(R.string.no_internet_connection), Snackbar.LENGTH_LONG).show();
+        }
     }
 
     @Override
@@ -44,8 +51,7 @@ public class FragmentNotification extends Fragment {
         super.onDestroyView();
     }
 
-    private void setWebView()
-    {
+    private void setWebView() {
         binding.webViewNotification.getSettings().setJavaScriptEnabled(true);
         binding.webViewNotification.setWebViewClient(new WebViewClient());
         binding.webViewNotification.loadUrl("https://console.firebase.google.com/project/newschool6-dd806/notification");

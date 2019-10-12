@@ -80,6 +80,7 @@ public class DatabaseRepository {
         Completable.fromAction(new Action() {
             @Override
             public void run() throws Exception {
+                newsDao.deleteAll();
                 newsDao.insert(news);
             }
         }).subscribeOn(Schedulers.io())

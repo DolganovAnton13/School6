@@ -14,7 +14,7 @@ public class News {
     private String date;
     private String image;
 
-    public News(String description, String date, String image) {
+    public News( String description, String date, String image) {
         this.description = description;
         this.date = date;
         this.image = image;

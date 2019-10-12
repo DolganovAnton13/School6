@@ -200,7 +200,8 @@ public class DataRepository {
             List<News> listNews = new ArrayList<>();
             DateFormat df = new java.text.SimpleDateFormat("HH:mm dd MMM yyyy");
             for (DataSnapshot dsp : dataSnapshot.getChildren()) {
-                listNews.add(new News(dsp.getValue().toString(),df.format(Calendar.getInstance().getTime()),""));
+                String date = dsp.getKey().replace('_','.');
+                listNews.add(new News(dsp.getValue().toString(),date,""));
             }
             return listNews;
         }

@@ -20,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.yugorsk.school6.R;
 import com.yugorsk.school6.adapter.NewsAdapter;
 import com.yugorsk.school6.data.News;
@@ -31,7 +32,7 @@ import com.yugorsk.school6.viewmodel.MainViewModel;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentNews extends Fragment implements NewsAdapter.NewsClickListener{
+public class FragmentNews extends Fragment implements NewsAdapter.NewsClickListener {
 
     private MainViewModel model;
     private FragmentNewsBinding binding;
@@ -47,11 +48,14 @@ public class FragmentNews extends Fragment implements NewsAdapter.NewsClickListe
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         model = ViewModelProviders.of(getActivity()).get(MainViewModel.class);
-        setRecyclerView();
 
+        setRecyclerView();
         NetworkState networkState = new NetworkState(getActivity());
-        if(networkState.isOnline()) {
+        if (networkState.isOnline()) {
             getNewsFromServer();
+        }
+        else {
+            Snackbar.make(binding.toolbarNews, getResources().getString(R.string.no_internet_connection), Snackbar.LENGTH_LONG).show();
         }
         showNews();
     }
@@ -90,8 +94,7 @@ public class FragmentNews extends Fragment implements NewsAdapter.NewsClickListe
         }
     }
 
-    private void setRecyclerView()
-    {
+    private void setRecyclerView() {
         newsAdapter = new NewsAdapter();
         newsAdapter.setNewsClickListener(this);
 
@@ -104,16 +107,17 @@ public class FragmentNews extends Fragment implements NewsAdapter.NewsClickListe
 
     }
 
-    private void getNewsFromServer()
-    {
-        model.getNewsFromServer().observe(getViewLifecycleOwner(),news -> {
+    private void getNewsFromServer() {
+
+        model.getNewsFromServer().observe(getViewLifecycleOwner(), news -> {
             model.insertNews(news);
         });
+
     }
 
-    private void showNews()
-    {
-        model.getNews().observe(getViewLifecycleOwner(),news -> {
+    private void showNews() {
+
+        model.getNews().observe(getViewLifecycleOwner(), news -> {
             newsAdapter.setNews(news);
         });
     }

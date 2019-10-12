@@ -1,5 +1,6 @@
 package com.yugorsk.school6.adapter;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,10 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
 
     public interface NewsClickListener {
         void onNewsClick(News news);
+    }
+
+    public void setListNews(List<News> listNews) {
+        this.listNews = listNews;
     }
 
     public NewsAdapter() {
@@ -52,15 +57,16 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
 
                 @Override
                 public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-                    return Objects.equals(listNews.get(oldItemPosition).getId(), newsUpdate.get(newItemPosition).getId());
+                    return Objects.equals(listNews.get(oldItemPosition).getDescription(), newsUpdate.get(newItemPosition).getDescription());
                 }
 
                 @Override
                 public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
                     News newNews = newsUpdate.get(newItemPosition);
                     News oldNews = listNews.get(oldItemPosition);
-                    return Objects.equals(newNews.getId(), oldNews.getId())
-                            && Objects.equals(newNews.getDescription(), oldNews.getDescription());
+
+                    return Objects.equals(newNews.getDate(), oldNews.getDate())
+                            && newNews.getDescription()==oldNews.getDescription();
                 }
             });
             listNews = newsUpdate;

@@ -3,6 +3,7 @@ package com.yugorsk.school6.viewmodel;
 import android.net.Uri;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 
@@ -18,6 +19,7 @@ import com.yugorsk.school6.data.Schedule;
 import com.yugorsk.school6.repository.DataRepository;
 import com.yugorsk.school6.repository.DatabaseRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainViewModel extends ViewModel {
