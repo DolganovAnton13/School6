@@ -12,12 +12,10 @@ public class News {
 
     private String description;
     private String date;
-    private String image;
 
-    public News( String description, String date, String image) {
+    public News( String description, String date) {
         this.description = description;
         this.date = date;
-        this.image = image;
     }
 
     public long getId() {
@@ -44,11 +42,4 @@ public class News {
         this.date = date;
     }
 
-    public String getImage() {
-        return image;
-    }
-
-    public void setImage(String image) {
-        this.image = image;
-    }
 }

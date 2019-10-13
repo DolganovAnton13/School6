@@ -18,8 +18,6 @@ public class Login {
         this.password = password;
     }
 
-    public Login(){}
-
     public long getId() {
         return id;
     }

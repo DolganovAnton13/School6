@@ -2,23 +2,18 @@ package com.yugorsk.school6.view.fragment;
 
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
-
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.yugorsk.school6.R;
-import com.yugorsk.school6.data.Call;
 import com.yugorsk.school6.databinding.FragmentCallSchedule2Binding;
 import com.yugorsk.school6.network.NetworkState;
 import com.yugorsk.school6.viewmodel.MainViewModel;

@@ -1,5 +1,9 @@
 package com.yugorsk.school6.view;
 
+import android.os.Bundle;
+import android.view.Gravity;
+import android.view.MenuItem;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
@@ -8,24 +12,16 @@ import androidx.core.view.GravityCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.NavController;
-
-import android.os.Bundle;
-
-import android.view.Gravity;
-import android.view.MenuItem;
-
 
 import com.google.android.material.navigation.NavigationView;
-
+import com.yugorsk.school6.R;
+import com.yugorsk.school6.databinding.ActivityMainBinding;
 import com.yugorsk.school6.view.fragment.FragmentAboutApp;
 import com.yugorsk.school6.view.fragment.FragmentAboutSchoolMain;
 import com.yugorsk.school6.view.fragment.FragmentCallScheduleMain;
 import com.yugorsk.school6.view.fragment.FragmentContactsMain;
 import com.yugorsk.school6.view.fragment.FragmentLogin;
 import com.yugorsk.school6.view.fragment.FragmentMain;
-import com.yugorsk.school6.R;
-import com.yugorsk.school6.databinding.ActivityMainBinding;
 import com.yugorsk.school6.view.fragment.FragmentNews;
 import com.yugorsk.school6.view.fragment.FragmentSchedule;
 
@@ -55,16 +51,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Fragment selectedFragment = null;
         menuItem.setChecked(true);
         binding.drawerLayout.closeDrawers();
+
         int id = menuItem.getItemId();
 
         switch (id) {
 
             case R.id.Main:
-                //navController.navigate(R.id.Main);
                 selectedFragment = new FragmentMain();
                 break;
             case R.id.AboutSchool:
-                //navController.navigate(R.id.AboutSchool);
                 selectedFragment = new FragmentAboutSchoolMain();
                 break;
             case R.id.Schedule:
@@ -158,7 +153,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     protected void onStart() {
-        if(FragmentLogin.admin)
+        if (FragmentLogin.admin)
             navigationView.getMenu().getItem(6).setTitle("Администрирование - выйти");
         super.onStart();
     }

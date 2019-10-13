@@ -1,7 +1,7 @@
 package com.yugorsk.school6.data;
 
-import androidx.annotation.NonNull;
 import androidx.room.Entity;
+import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
 
 @Entity
@@ -29,6 +29,8 @@ public class Date {
         this.quarterFourFrom = quarterFourFrom;
         this.quarterFourTo = quarterFourTo;
     }
+
+    @Ignore
     public Date(){}
 
     public long getId() {

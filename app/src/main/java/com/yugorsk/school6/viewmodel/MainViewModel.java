@@ -1,5 +1,6 @@
 package com.yugorsk.school6.viewmodel;
 
+import android.content.DialogInterface;
 import android.net.Uri;
 
 import androidx.lifecycle.LiveData;
@@ -92,10 +93,13 @@ public class MainViewModel extends ViewModel {
         database.insertNews(news);
     }
 
-    public void insertNews(News news) {
-        database.insertNews(news);
+    public void LoadNews(String key, String news,  SnackbarCallback snackbarCallback)
+    {
+        data.LoadNews(key,news,snackbarCallback);
     }
-    public void deleteNews(News news) {
-        database.deleteNews(news);
+
+    public void DeleteNews(String key, SnackbarCallback snackbarCallback)
+    {
+        data.DeleteNews(key,snackbarCallback);
     }
 }

@@ -1,6 +1,5 @@
 package com.yugorsk.school6.adapter;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +9,12 @@ import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.yugorsk.school6.R;
+import com.yugorsk.school6.callback.NewsClickListener;
+import com.yugorsk.school6.callback.PopupMenuNewsClick;
 import com.yugorsk.school6.data.News;
 import com.yugorsk.school6.databinding.ItemNewsBinding;
+import com.yugorsk.school6.view.fragment.FragmentLogin;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,10 +24,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
 
     private List<News> listNews;
     private NewsClickListener newsClickListener;
-
-    public interface NewsClickListener {
-        void onNewsClick(News news);
-    }
+    private PopupMenuNewsClick popupMenuNewsClick;
 
     public void setListNews(List<News> listNews) {
         this.listNews = listNews;
@@ -38,12 +38,15 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
         this.newsClickListener = newsClickListener;
     }
 
+    public void setPopupMenuNewsClick(PopupMenuNewsClick popupMenuNewsClick) {
+        this.popupMenuNewsClick = popupMenuNewsClick;
+    }
+
     public void setNews(List<News> newsUpdate) {
         if (getItemCount() == 0) {
             listNews = newsUpdate;
             notifyItemRangeInserted(0, newsUpdate.size());
-        }
-        else {
+        } else {
             DiffUtil.DiffResult result = DiffUtil.calculateDiff(new DiffUtil.Callback() {
                 @Override
                 public int getOldListSize() {
@@ -66,7 +69,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
                     News oldNews = listNews.get(oldItemPosition);
 
                     return Objects.equals(newNews.getDate(), oldNews.getDate())
-                            && newNews.getDescription()==oldNews.getDescription();
+                            && newNews.getDescription() == oldNews.getDescription();
                 }
             });
             listNews = newsUpdate;
@@ -81,12 +84,17 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
         public NewsHolder(@NonNull View itemView) {
             super(itemView);
             binding = DataBindingUtil.bind(itemView);
+            if (!FragmentLogin.admin) binding.buttonMenu.setVisibility(View.INVISIBLE);
+            binding.buttonMenu.setOnClickListener(this);
             itemView.setOnClickListener(this);
         }
 
         @Override
         public void onClick(View view) {
-            newsClickListener.onNewsClick(binding.getNews());
+            if (view.getId() == R.id.buttonMenu)
+                popupMenuNewsClick.onPopupMenuClick(view, binding.getNews());
+            else
+                newsClickListener.onNewsClick(binding.getNews());
         }
     }
 
@@ -107,4 +115,9 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsHolder> {
     public int getItemCount() {
         return listNews == null ? 0 : listNews.size();
     }
+
+    public News getNews(int position) {
+        return listNews.get(position);
+    }
+
 }

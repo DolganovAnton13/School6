@@ -110,6 +110,9 @@
     <string name="Tadyko">Бассейн Заведующий\n<b>Тадыко Сергей Валентинович</b></string>
     <string name="Lyashok">Библиотека Заведующая\n<b>Ляшок Светлана Васильевна</b></string>
     <string name="emptyField">Поля не могут быть пустыми. Пожалуйста, введите все данные</string>
+    <string name="cancel">Отмена</string>
+    <string name="ok">Удалить</string>
+    <string name="delete">Удалить новость?</string>
 
 
 </resources>

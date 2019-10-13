@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
+
+    <data>
+        <variable
+            name="event"
+            type="com.yugorsk.school6.view.fragment.FragmentAddNote" />
+    </data>
+
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -24,7 +31,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             android:layout_marginTop="16dp"
-            android:id="@+id/textAddNote"
+            android:id="@+id/textDescription"
             />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -38,14 +45,9 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             app:backgroundTint="@color/colorPrimary"
-            app:elevation="6dp"/>
+            app:elevation="6dp"
+            android:onClick="@{event::onFABClick}" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/icon2"
-            android:layout_below="@+id/textAddNote"
-            android:id="@+id/pictureNews" />
     </RelativeLayout>
 
 </layout>

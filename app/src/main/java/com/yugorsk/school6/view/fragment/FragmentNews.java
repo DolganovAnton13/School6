@@ -1,10 +1,19 @@
 package com.yugorsk.school6.view.fragment;
 
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
@@ -13,16 +22,12 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-
 import com.google.android.material.snackbar.Snackbar;
 import com.yugorsk.school6.R;
 import com.yugorsk.school6.adapter.NewsAdapter;
+import com.yugorsk.school6.callback.NewsClickListener;
+import com.yugorsk.school6.callback.PopupMenuNewsClick;
+import com.yugorsk.school6.callback.SnackbarCallback;
 import com.yugorsk.school6.data.News;
 import com.yugorsk.school6.databinding.FragmentNewsBinding;
 import com.yugorsk.school6.network.NetworkState;
@@ -32,7 +37,7 @@ import com.yugorsk.school6.viewmodel.MainViewModel;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentNews extends Fragment implements NewsAdapter.NewsClickListener {
+public class FragmentNews extends Fragment implements NewsClickListener, SnackbarCallback, PopupMenuNewsClick {
 
     private MainViewModel model;
     private FragmentNewsBinding binding;
@@ -53,8 +58,7 @@ public class FragmentNews extends Fragment implements NewsAdapter.NewsClickListe
         NetworkState networkState = new NetworkState(getActivity());
         if (networkState.isOnline()) {
             getNewsFromServer();
-        }
-        else {
+        } else {
             Snackbar.make(binding.toolbarNews, getResources().getString(R.string.no_internet_connection), Snackbar.LENGTH_LONG).show();
         }
         showNews();
@@ -97,6 +101,7 @@ public class FragmentNews extends Fragment implements NewsAdapter.NewsClickListe
     private void setRecyclerView() {
         newsAdapter = new NewsAdapter();
         newsAdapter.setNewsClickListener(this);
+        newsAdapter.setPopupMenuNewsClick(this);
 
         RecyclerView contactList = binding.listNews;
         contactList.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -112,7 +117,6 @@ public class FragmentNews extends Fragment implements NewsAdapter.NewsClickListe
         model.getNewsFromServer().observe(getViewLifecycleOwner(), news -> {
             model.insertNews(news);
         });
-
     }
 
     private void showNews() {
@@ -125,5 +129,61 @@ public class FragmentNews extends Fragment implements NewsAdapter.NewsClickListe
     @Override
     public void onNewsClick(News news) {
 
+        if (FragmentLogin.admin) {
+            FragmentAddNote fragmentAddNote = new FragmentAddNote();
+            Bundle bundle = new Bundle();
+            bundle.putString("description", news.getDescription());
+            bundle.putString("date", news.getDate());
+            fragmentAddNote.setArguments(bundle);
+            ((MainActivity) getActivity()).replaceFragment(fragmentAddNote);
+        }
+    }
+
+    @Override
+    public void onPopupMenuClick(View v, News news) {
+
+        PopupMenu popup = new PopupMenu(getActivity(), v);
+        popup.inflate(R.menu.popup_menu_news);
+        popup.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                switch (item.getItemId()) {
+                    case R.id.delete:
+                        setAlertDialog(news.getDate());
+                        return true;
+                    default:
+                        return false;
+                }
+            }
+        });
+        popup.show();
+    }
+
+    private void setAlertDialog(String key) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+
+        builder.setMessage(R.string.delete);
+        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                NetworkState networkState = new NetworkState(getActivity());
+                if (networkState.isOnline()) {
+                    model.DeleteNews(key, FragmentNews.this::SnackbarShow);
+                } else {
+                    Snackbar.make(binding.toolbarNews, getResources().getString(R.string.no_internet_connection), Snackbar.LENGTH_LONG).show();
+                }
+            }
+        });
+        builder.setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+            }
+        });
+
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
+
+    @Override
+    public void SnackbarShow(String text) {
+        Snackbar.make(binding.listNews, text, Snackbar.LENGTH_LONG).show();
     }
 }

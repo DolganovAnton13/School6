@@ -87,28 +87,6 @@ public class DatabaseRepository {
                 .subscribe();
     }
 
-    public void insertNews(News news)
-    {
-        Completable.fromAction(new Action() {
-            @Override
-            public void run() throws Exception {
-                newsDao.insert(news);
-            }
-        }).subscribeOn(Schedulers.io())
-                .subscribe();
-    }
-
-    public void deleteNews(News news)
-    {
-        Completable.fromAction(new Action() {
-            @Override
-            public void run() throws Exception {
-                newsDao.delete(news);
-            }
-        }).subscribeOn(Schedulers.io())
-                .subscribe();
-    }
-
     public void deleteLogin()
     {
         Completable.fromAction(new Action() {

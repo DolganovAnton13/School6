@@ -28,6 +28,8 @@ import com.yugorsk.school6.network.FirebaseQueryLiveData;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 public class DataRepository {
@@ -36,6 +38,7 @@ public class DataRepository {
     private static final DatabaseReference Call_REF = FirebaseDatabase.getInstance().getReference().child("Звонки");
     private static final DatabaseReference Login_REF = FirebaseDatabase.getInstance().getReference().child("Администрирование");
     private static final DatabaseReference News_REF = FirebaseDatabase.getInstance().getReference().child("Новости");
+
 
     MutableLiveData<StorageReference> storageLiveData;
 
@@ -198,11 +201,10 @@ public class DataRepository {
         @Override
         public List<News> apply(DataSnapshot dataSnapshot) {
             List<News> listNews = new ArrayList<>();
-            DateFormat df = new java.text.SimpleDateFormat("HH:mm dd MMM yyyy");
             for (DataSnapshot dsp : dataSnapshot.getChildren()) {
-                String date = dsp.getKey().replace('_','.');
-                listNews.add(new News(dsp.getValue().toString(),date,""));
+                listNews.add(new News(dsp.getValue().toString(), dsp.getKey()));
             }
+            Collections.reverse(listNews);
             return listNews;
         }
     }
@@ -234,5 +236,35 @@ public class DataRepository {
                     }
                 });
 
+    }
+
+    public void LoadNews(String key, String news, SnackbarCallback snackbarCallback) {
+
+        News_REF.child(key).setValue(news).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                snackbarCallback.SnackbarShow("Загружено");
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                snackbarCallback.SnackbarShow("Ошибка загрузки");
+            }
+        });
+    }
+
+    public void DeleteNews(String key, SnackbarCallback snackbarCallback) {
+
+        News_REF.child(key).removeValue().addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                snackbarCallback.SnackbarShow("Удалено");
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                snackbarCallback.SnackbarShow("Ошибка удаления");
+            }
+        });
     }
 }

@@ -2,6 +2,11 @@ package com.yugorsk.school6.view.fragment;
 
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -10,20 +15,14 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModelProviders;
 
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-
 import com.yugorsk.school6.CalendarDate;
-import com.yugorsk.school6.data.Login;
-import com.yugorsk.school6.network.NetworkState;
-import com.yugorsk.school6.viewmodel.MainViewModel;
 import com.yugorsk.school6.R;
 import com.yugorsk.school6.data.Date;
+import com.yugorsk.school6.data.Login;
 import com.yugorsk.school6.databinding.FragmentMainBinding;
+import com.yugorsk.school6.network.NetworkState;
 import com.yugorsk.school6.view.MainActivity;
+import com.yugorsk.school6.viewmodel.MainViewModel;
 
 
 /**
